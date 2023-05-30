@@ -1,5 +1,6 @@
 import React from 'react'
 import style from "../Style/dashboard.module.css";
+import Modal from "../components/Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faRightFromBracket, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -139,6 +140,7 @@ const Dashboard = () => {
                 </div>
             </div>
         </div>
+        <Modal className={style.modal} title="Form Penambahan Data Restoran"/>
     </div>
   )
 }

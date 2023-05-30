@@ -34,7 +34,6 @@
     border: none;
     border-radius: 7px;
     padding: 5px;
-    font-family: 'Tinos';
     font-size: 18px;
     font-weight: bold;
     color: #1E1E1E;
@@ -96,7 +95,6 @@
     position: relative;
     float: right;
     height: 25px;
-    font-family: 'Tinos';
     font-weight: bold;
     font-size: 16;
     color: #1E1E1E;
@@ -187,3 +185,10 @@
   .icon_edit {
     margin-left: 10px;
   }
+
+.modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
