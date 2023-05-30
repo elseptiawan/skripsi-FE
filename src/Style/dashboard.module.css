@@ -1,0 +1,189 @@
+.dashboard_container {
+    background-color: #F8F2F0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    position: relative;
+    width: 100%;
+    height: 100px;
+}
+
+.maps_button {
+    float: left;
+    position: relative;
+    margin: 10px;
+    padding: 7px;
+    padding-top: 15px;
+    color: #1E1E1E;
+}
+
+.logout_button {
+    position: relative;
+    float: right;
+    margin: 10px;
+    padding: 7px;
+}
+
+.logout {
+    position: relative;
+    background-color: #FFFFFF;
+    height: 35px;
+    border: none;
+    border-radius: 7px;
+    padding: 5px;
+    font-family: 'Tinos';
+    font-size: 18px;
+    font-weight: bold;
+    color: #1E1E1E;
+  }
+  
+  button.logout:hover {
+    cursor: pointer;
+  }
+  
+  button.logout:focus {
+    box-shadow: 0 0 3px 0 #1183d6;
+    border-color: #1183d6;
+    outline: none;
+  }
+
+  .main_container {
+    position: relative;
+    width: 100%;
+    height: 87%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .data_container {
+    position: relative;
+    width: 70%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button_container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    background-color: #F4F7FC;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+
+  .button_container input {
+    position: relative;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    float: left;
+    margin-left: 15px;
+  }
+
+  .button_container input::placeholder{
+    font-family: FontAwesome;
+    font-size: 16px;
+  }
+
+  .button_container button{
+    position: relative;
+    float: right;
+    height: 25px;
+    font-family: 'Tinos';
+    font-weight: bold;
+    font-size: 16;
+    color: #1E1E1E;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    margin-right: 10px;
+  }
+
+  .button_container button:hover{
+    cursor: pointer;
+  }
+
+  .button_container button:focus{
+    box-shadow: 0 0 3px 0 #1183d6;
+    border-color: #1183d6;
+    outline: none;
+  }
+
+  .table_container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+  }
+
+  .table_container table {
+    position: relative;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: separate;
+    color: #1E1E1E;
+  }
+
+  .table_container table.floatThead-table {
+    border-top: none;
+    border-bottom: none;
+    background-color: #F4F7FC;
+  }
+
+  .table_container table th {
+    position: sticky;
+    top: 0px;
+    background-color: #F4F7FC;
+  }
+
+  .table_container table thead{
+    position: relative;
+    width: 100%;
+    border: 2px solid black;
+  }
+
+  .table_container table th,
+  .table_container table td{
+    padding: 10px;
+    padding-left: 30px;
+    text-align: left;
+    border-style: none none none none;
+  }
+
+  .table_container table tr{
+    margin: 0px;
+  }
+
+  .table_container table tr:nth-child(2n+1){
+    background-color: white;
+  }
+
+  .table_container table tr:nth-child(2n+2){
+    background-color: #F4F7FC;
+  }
+
+  .table_container table tr:first-child{
+    position: sticky;
+  }
+
+  .table_container table tr:last-child td:first-child{
+    border-bottom-left-radius: 5px;
+  }
+
+  .table_container table tr:last-child td:last-child{
+    border-bottom-right-radius: 5px;
+  }
+
+  .icon_delete,
+  .icon_edit {
+    margin-left: 10px;
+  }

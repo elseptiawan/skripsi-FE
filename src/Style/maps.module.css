@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* #root {
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  font-family: sans-serif;
+  color: #333;
+} */
+
+/* .map {
+  background: rgba(0,0,0,0.5);
+  margin: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */
+
+.container {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+/* height of the container */
+.leaflet_container {
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.topleft {
+  position: relative;
+  float: left;
+  z-index: 10;
+  margin: 20px;
+  font-size: 12px;
+}
+
+.topright {
+  position: relative;
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  z-index: 10;
+  font-size: 12px;
+}
+
+.form_search {
+  position: relative;
+  padding: 5px;
+  border: none;
+  border-radius: 7px;
+}
+
+.form_search input[type="search"] {
+  width: 250px;
+  height: 35px;
+  border: none;
+  margin: 0;
+  text-indent: 5px;
+  padding: 5px;
+  font-family: 'Tinos';
+  font-size: 18px;
+  border-radius: 7px;
+}
+
+.form_search input[type="search"]::placeholder {
+  color: #cdcdcd;
+  font-family: FontAwesome;
+  font-size: 18px;
+}
+
+.form_search input[type="search"]:focus {
+  box-shadow: 0 0 3px 0 #1183d6;
+  border-color: #1183d6;
+  outline: none;
+}
+
+select {
+  width: 250px;
+  height: 35px;
+  padding: 5px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Tinos';
+  font-size: 18px;
+}
+
+/* input {
+  width: 250px;
+  height: 35px;
+  text-indent: 5px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Tinos';
+  font-size: 18px;
+} */
+
+input:placeholder-shown{
+  padding: 5px;
+  color: #cdcdcd;
+  font-family: 'Tinos';
+  font-size: 18px;
+}
+
+.login {
+  position: relative;
+  background-color: white;
+  padding: 7px;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Tinos';
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button.login:hover {
+  cursor: pointer;
+}
+
+button.login:focus {
+  box-shadow: 0 0 3px 0 #1183d6;
+  border-color: #1183d6;
+  outline: none;
+}
+
+/* .cluster-icon {
+  background-color: #333;
+  height: 2em;
+  width: 2em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0px 5px #fff;
+} */
