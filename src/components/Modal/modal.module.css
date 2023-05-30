@@ -12,12 +12,81 @@
 
 .modal_content {
     position: relative;
-    height: 50vh;
-    width: 50%;
+    width: 450px;
     padding: 10px;
     background-color: white;
 }
 
 .modal_header {
-    margin-bottom: 20px;
+    position: relative;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.modal_header h4 {
+    position: relative;
+    float: left;
+}
+
+.modal_header button {
+    position: relative;
+    float: right;
+    background-color: transparent;
+    border: none;
+    margin-top: 3px;
+}
+
+.modal_header button:hover {
+    cursor: pointer;
+}
+
+.modal_body input,
+.modal_body textarea,
+.modal_body select {
+    position: relative;
+    width: 99%;
+    margin-bottom: 10px;
+    margin-top: 3px;
+    border: none;
+    border-radius: 7px;
+    background-color: #f0f1f2;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.modal_body input {
+    height: 30px;
+}
+
+.modal_body textarea {
+    height: 100px;
+}
+
+.modal_body input:focus,
+.modal_body textarea:focus,
+.modal_body select:focus {
+    box-shadow: 0 0 3px 0 #1183d6;
+    border-color: #1183d6;
+    outline: none;
+}
+
+.modal_body button {
+    position: relative;
+    float: right;
+    background-color: #0048D9;
+    padding: 7px;
+    border: none;
+    border-radius: 7px;
+    font-family: 'Tinos';
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+.modal_body button:hover{
+    background-color: #002266;
+    cursor: pointer;
 }

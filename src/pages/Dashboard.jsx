@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from "../Style/dashboard.module.css";
 import Modal from "../components/Modal/Modal";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,8 @@ const Dashboard = () => {
     const handleClick = (event) => {
         navigate('../login');
     };
+    const [show, setShow] = useState(false)
+    const [title, setTitle] = useState()
   return (
     <div className={style.dashboard_container}>
         <div className={style.top}>
@@ -28,7 +30,7 @@ const Dashboard = () => {
                     <form>
                         <input type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
                     </form>
-                    <button className={style.add_restoran}>
+                    <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran')]}>
                         Tambah Restoran
                     </button>
                 </div>
@@ -49,98 +51,98 @@ const Dashboard = () => {
                             <td>Restoran A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Restoran</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran')]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Catering A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Catering</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>5</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>6</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>7</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>8</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>9</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>10</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>11</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>12</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         <tr>
                             <td>13</td>
                             <td>Rumah Makan A</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
                             <td>Rumah Makan</td>
-                            <td><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /> <FontAwesomeIcon icon={faTrash} className="icon_delete" /> </td>
+                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <Modal className={style.modal} title="Form Penambahan Data Restoran"/>
+        <Modal className={style.modal} onClose={() => setShow(false)} title={title} show={show}/>
     </div>
   )
 }

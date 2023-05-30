@@ -157,6 +157,22 @@
     border-style: none none none none;
   }
 
+  .table_container table td button {
+    border: none;
+    background-color: transparent;
+    margin-left: 5px;
+  }
+
+  .table_container table td button:hover{
+    cursor: pointer;
+  }
+
+  .table_container table td button:focus{
+    box-shadow: 0 0 3px 0 #1183d6;
+    border-color: #1183d6;
+    outline: none;
+  }
+
   .table_container table tr{
     margin: 0px;
   }
