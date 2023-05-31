@@ -8,8 +8,8 @@ const Modal = props => {
     return null
   }
   return (
-    <div className={style.modal}>
-      <div className={style.modal_content}>
+    <div className={style.modal} onClick={props.onClose}>
+      <div className={style.modal_content} onClick={e => e.stopPropagation()}>
         <div className={style.modal_header}>
           <h4>{props.title}</h4>
           <button onClick={props.onClose}>

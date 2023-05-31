@@ -15,6 +15,7 @@
     width: 450px;
     padding: 10px;
     background-color: white;
+    border-radius: 5px;
 }
 
 .modal_header {
@@ -60,6 +61,10 @@
 
 .modal_body textarea {
     height: 100px;
+}
+
+.modal_body textarea:placeholder-shown{
+    padding: 10px;
 }
 
 .modal_body input:focus,
