@@ -21,9 +21,9 @@ const Login = () => {
           <div className={style.form_login}>
             <h2>Login Admin</h2>
             <form>
-            <label for="email">Email</label><br/>
+            <label>Email</label><br/>
             <input className={style.login_input} type="email" placeholder="Masukkan Email" name="email" required/><br/>
-            <label for="password">Password</label><br/>
+            <label>Password</label><br/>
             <input className={style.login_input} type="password" placeholder="Masukkan Password" name="password" required/><br/>
             <button className={style.login_button} onClick={event => handleClick(event)}>
               Login

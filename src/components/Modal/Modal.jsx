@@ -18,27 +18,27 @@ const Modal = props => {
         </div>
         <div className={style.modal_body}>
         <form>
-          <label for="nama_restoran">Nama Restoran</label><br/>
+          <label>Nama Restoran</label><br/>
           <input type="text" id="nama_restoran" name="nama_restoran" placeholder='Masukkan Nama Restoran'/><br/>
-          <label for="no_sertifikat">Nomor Sertifikat Halal</label><br/>
+          <label>Nomor Sertifikat Halal</label><br/>
           <input type="text" id="no_sertifikat" name="no_sertifikat" placeholder='Masukkan Nomor Sertifikat Halal'/><br/>
-          <label for="kategori">Kategori</label><br/>
+          <label>Kategori</label><br/>
           <select name="kategori" id="kategori">
             <option value="" disabled selected>Pilih Kategori</option>
             <option value="Restoran">Restoran</option>
             <option value="Rumah Makan">Rumah Makan</option>
             <option value="Caterong">Caterong</option>
           </select><br/>
-          <label for="kecamatan">Kecamatan</label><br/>
+          <label>Kecamatan</label><br/>
           <select name="kecamatan" id="kecamatan">
             <option value="" disabled selected>Pilih Kecamatan</option>
             <option value="Coblong">Coblong</option>
             <option value="Astana Anyar">Astana Anyar</option>
             <option value="Antapani">Caterong</option>
           </select><br/>
-          <label for="alamat">Alamat</label><br/>
+          <label>Alamat</label><br/>
           <textarea placeholder='Masukkan Alamat' id="alamat" name="alamat" rows="4" cols="50"></textarea><br/>
-          <label for="koordinat">Koordinat</label><br/>
+          <label>Koordinat</label><br/>
           <input type="text" id="koordinat" name="koordinat" placeholder='Masukkan Koordinat'/><br/>
           <button>Simpan</button>
         </form>
