@@ -16,21 +16,43 @@ const customIcon = new Icon({
   });
 
   export default function Maps() {
-    const position = [-6.901681163172566, 107.62512693756112]
     const navigate = useNavigate();
     const handleClick = (event) => {
         navigate('login');
       };
+    const handleChange = event => {
+        if (!event.target.value){
+          getRestorans();
+        }
+        else{
+          getRestoransByCategory(event.target.value);
+        }
+      };
     const [restorans, setRestorans] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
       getRestorans();
     }, []);
 
+    useEffect(() => {
+      getCategories();
+    }, []);
+
     const getRestorans = async () => {
-      const response = await axios.get("http://localhost:3000/restorans");
-      setRestorans(response.data.data);
+      const dataRestorans = await axios.get("http://localhost:3000/restorans");
+      setRestorans(dataRestorans.data.data);
     };
+
+    const getRestoransByCategory = async (id) => {
+      const dataRestoransByCategory = await axios.get(`http://localhost:3000/restorans/get-by-category/${id}`);
+      setRestorans(dataRestoransByCategory.data.data);
+    };
+
+    const getCategories = async () => {
+      const dataCategories = await axios.get("http://localhost:3000/categories");
+      setCategories(dataCategories.data.response);
+    }
 
     return (
       <div className={style.container}>
@@ -48,14 +70,14 @@ const customIcon = new Icon({
       </MapContainer>
       </div>
         <div className={style.topleft}>
-          <form>
-            <select name = "category">
-            <option>Semua Kategori</option>
-            <option>Restoran</option>
-            <option>Rumah Makan</option>
-            <option>Catering</option>
+            <select name = "category" onChange={handleChange}>
+            <option value=''>Semua Kategori</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category.kategori_id}>{category.nama}</option>
+            ))}
             </select>
             <br/>
+            <form>
             <div className={style.form_search}>
               <input type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
             </div>
