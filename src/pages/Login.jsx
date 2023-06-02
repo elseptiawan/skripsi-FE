@@ -22,8 +22,6 @@ const Login = () => {
         password,
       });
 
-      console.log(res.response);
-
       setLocalStorage("token", res.token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
       setError("");
@@ -60,7 +58,8 @@ const Login = () => {
             placeholder="Masukkan Password" 
             name="password"
             onChange={(e) => setPassword(e.target.value)} 
-            required/><br/>
+            required
+            minlength="6"/><br/>
             {error && <div className={`${style.alert} danger`}>{error}</div>}
             <button className={style.login_button}>
               Login
