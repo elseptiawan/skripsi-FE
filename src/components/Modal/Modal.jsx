@@ -38,8 +38,10 @@ const Modal = props => {
           </select><br/>
           <label>Alamat</label><br/>
           <textarea placeholder='Masukkan Alamat' id="alamat" name="alamat" rows="4" cols="50"></textarea><br/>
-          <label>Koordinat</label><br/>
-          <input type="text" id="koordinat" name="koordinat" placeholder='Masukkan Koordinat'/><br/>
+          <label>Latitude</label><br/>
+          <input type="text" id="latitude" name="latitude" placeholder='Masukkan Latitude'/><br/>
+          <label>Longtitude</label><br/>
+          <input type="text" id="longtitude" name="longtitude" placeholder='Masukkan Longtitude'/><br/>
           <button>Simpan</button>
         </form>
         </div>
