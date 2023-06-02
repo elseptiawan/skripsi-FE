@@ -99,3 +99,8 @@ button.login_button:focus {
     border-color: #1183d6;
     outline: none;
   }
+
+.alert {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
