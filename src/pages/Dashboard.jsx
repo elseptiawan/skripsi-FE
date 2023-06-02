@@ -1,14 +1,27 @@
 import React, { useState } from 'react'
 import style from "../Style/dashboard.module.css";
+import axios from "axios";
 import Modal from "../components/Modal/Modal";
 import { useNavigate } from "react-router-dom";
+import { setLocalStorage } from "../scripts/localStorage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faRightFromBracket, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const handleClick = (event) => {
-        navigate('../login');
+    const token = JSON.parse(sessionStorage.getItem('data'));
+    const [restorans, setRestorans] = useState("");
+    const handleClick = async (event) => {
+        try {
+            setLocalStorage("token", "");
+            axios.defaults.headers.common["Authorization"] = "";
+            navigate("/login");
+          } catch (error) {
+            console.log(error);
+          }
+    };
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
     };
     const [show, setShow] = useState(false)
     const [title, setTitle] = useState()
