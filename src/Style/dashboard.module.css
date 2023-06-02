@@ -157,6 +157,11 @@
     border-style: none none none none;
   }
 
+  .table_container table td.alamat,
+  .table_container table th.alamat{
+    max-width: 400px;
+  }
+
   .table_container table td button {
     border: none;
     background-color: transparent;
