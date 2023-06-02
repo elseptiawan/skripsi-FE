@@ -1,48 +1,169 @@
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import style from "./modal.module.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = props => {
-  if (!props.show){
-    return null
+  const [categories, setCategories] = useState([]);
+  const [nama, setNama] = useState("");
+  const [no_sertifikat, setNoSertifikat] = useState("");
+  const [kategori_id, setKategoriId] = useState("1");
+  const [kecamatan, setKecamatan] = useState("Coblong");
+  const [alamat, setAlamat] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longtitude, setLongtitude] = useState("");
+  const navigate = useNavigate();
+
+  const nama_kecamatan = [
+    'Coblong',
+    'Antapani',
+    'Sukajasi',
+    'Astana Anyar',
+    'Bandung Wetan',
+    'Lengkong',
+    'Cicendo'
+  ];
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  useEffect(() => {
+    if(props.id){
+      getRestoransById(props.id);
+    }
+  }, []);
+
+  const getCategories = async () => {
+    const dataCategories = await axios.get("http://localhost:3000/categories");
+    setCategories(dataCategories.data.response);
   }
+
+  const getRestoransById = async (id) => {
+    const {data : res} = await axios.get(`http://localhost:3000/restorans/${id}`);
+    setNama(res.data.nama);
+    setNoSertifikat(res.data.no_sertifikat);
+    setKategoriId(res.data.kategori_id);
+    setKecamatan(res.data.kecamatan);
+    setAlamat(res.data.alamat);
+    setLatitude(res.data.latitude);
+    setLongtitude(res.data.longtitude);
+  }
+
+  const addRestoran = async () => {
+    try {
+      await axios.post("http://localhost:3000/restorans", {
+        nama,
+        no_sertifikat,
+        kategori_id,
+        kecamatan,
+        alamat,
+        latitude,
+        longtitude,
+      });
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editRestoran = async (id) => {
+    try {
+      await axios.put(`http://localhost:3000/restorans/${id}`, {
+        nama,
+        no_sertifikat,
+        kategori_id,
+        kecamatan,
+        alamat,
+        latitude,
+        longtitude,
+      });
+      props.onClose();
+      props.getRestoran();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = async (e) => { 
+    e.preventDefault();   
+    if(props.id){
+      editRestoran(props.id)
+    }
+    else{
+      addRestoran();
+    }
+  }
+
   return (
     <div className={style.modal} onClick={props.onClose}>
       <div className={style.modal_content} onClick={e => e.stopPropagation()}>
         <div className={style.modal_header}>
-          <h4>{props.title}</h4>
-          <button onClick={props.onClose}>
+          <h4>Form Penambahan Restoran</h4>
+          <button onClick={props.onClose} >
           <FontAwesomeIcon icon={faXmark} className="icon_close" />
           </button>
         </div>
         <div className={style.modal_body}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>Nama Restoran</label><br/>
-          <input type="text" id="nama_restoran" name="nama_restoran" placeholder='Masukkan Nama Restoran'/><br/>
+          <input 
+          type="text" 
+          name="nama_restoran"
+          onChange={(e) => setNama(e.target.value)}
+          defaultValue={nama} 
+          placeholder='Masukkan Nama Restoran'
+          /><br/>
           <label>Nomor Sertifikat Halal</label><br/>
-          <input type="text" id="no_sertifikat" name="no_sertifikat" placeholder='Masukkan Nomor Sertifikat Halal'/><br/>
+          <input 
+          type="text" 
+          name="no_sertifikat" 
+          onChange={(e) => setNoSertifikat(e.target.value)}
+          defaultValue={no_sertifikat}
+          placeholder='Masukkan Nomor Sertifikat Halal'
+          /><br/>
           <label>Kategori</label><br/>
-          <select name="kategori" id="kategori">
+          <select onChange={(e) => setKategoriId(e.target.value)} defaultValue={kategori_id} name="kategori">
             <option value="" disabled selected>Pilih Kategori</option>
-            <option value="Restoran">Restoran</option>
-            <option value="Rumah Makan">Rumah Makan</option>
-            <option value="Caterong">Caterong</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category.kategori_id}>{category.nama}</option>
+            ))}
           </select><br/>
           <label>Kecamatan</label><br/>
-          <select name="kecamatan" id="kecamatan">
+          <select onChange={(e) => setKecamatan(e.target.value)} defaultValue={kecamatan} name="kecamatan" id="kecamatan" >
             <option value="" disabled selected>Pilih Kecamatan</option>
-            <option value="Coblong">Coblong</option>
-            <option value="Astana Anyar">Astana Anyar</option>
-            <option value="Antapani">Caterong</option>
+            {nama_kecamatan.map((element, index) => (
+              <option key={index} value={element}>{element}</option>
+            ))}
           </select><br/>
           <label>Alamat</label><br/>
-          <textarea placeholder='Masukkan Alamat' id="alamat" name="alamat" rows="4" cols="50"></textarea><br/>
+          <textarea 
+          placeholder='Masukkan Alamat' 
+          name="alamat" 
+          onChange={(e) => setAlamat(e.target.value)}
+          defaultValue={alamat}
+          rows="4" 
+          cols="50"
+          ></textarea><br/>
           <label>Latitude</label><br/>
-          <input type="text" id="latitude" name="latitude" placeholder='Masukkan Latitude'/><br/>
+          <input 
+          type="text" 
+          name="latitude" 
+          onChange={(e) => setLatitude(e.target.value)}
+          defaultValue={latitude}
+          placeholder='Masukkan Latitude'
+          /><br/>
           <label>Longtitude</label><br/>
-          <input type="text" id="longtitude" name="longtitude" placeholder='Masukkan Longtitude'/><br/>
-          <button>Simpan</button>
+          <input 
+          type="text" 
+          name="longtitude" 
+          onChange={(e) => setLongtitude(e.target.value)}
+          defaultValue={longtitude}
+          placeholder='Masukkan Longtitude'
+          /><br/>
+          <button >Simpan</button>
         </form>
         </div>
       </div>

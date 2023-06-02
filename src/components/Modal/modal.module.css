@@ -61,6 +61,7 @@
 
 .modal_body textarea {
     height: 100px;
+    padding-top: 10px;
 }
 
 .modal_body textarea:placeholder-shown{

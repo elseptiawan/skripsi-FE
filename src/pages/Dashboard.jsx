@@ -11,7 +11,8 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [restorans, setRestorans] = useState([]);
     const [show, setShow] = useState(false)
-    const [title, setTitle] = useState();
+    const [title, setTitle] = useState(false)
+    const [id, setId] = useState('');
 
     useEffect(() => {
         getRestorans();
@@ -21,6 +22,15 @@ const Dashboard = () => {
         const dataRestorans = await axios.get("http://localhost:3000/restorans");
         setRestorans(dataRestorans.data.data);
     };
+
+    const deleteRestoran = async (id) => {
+        try {
+          await axios.delete(`http://localhost:3000/restorans/${id}`);
+          getRestorans();
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
     const handleClick = async (event) => {
         try {
@@ -49,7 +59,7 @@ const Dashboard = () => {
                     <form>
                         <input type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
                     </form>
-                    <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran')]}>
+                    <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
                         Tambah Restoran
                     </button>
                 </div>
@@ -72,7 +82,7 @@ const Dashboard = () => {
                                 <td>{restoran.nama}</td>
                                 <td className={style.alamat}>{restoran.alamat}</td>
                                 <td>{restoran.category.nama}</td>
-                                <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran')]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
+                                <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran'), setId(restoran.id)]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button onClick={() => deleteRestoran(restoran.id)}><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                             </tr>
                         ))}
                         </tbody>
@@ -80,7 +90,7 @@ const Dashboard = () => {
                 </div>
             </div>
         </div>
-        <Modal className={style.modal} onClose={() => setShow(false)} title={title} show={show}/>
+        {show ? <Modal className={style.modal} getRestoran={() => getRestorans()} onClose={() => setShow(false)} show={show} id={id}/> : null}
     </div>
   )
 }
