@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from "../Style/dashboard.module.css";
 import axios from "axios";
 import Modal from "../components/Modal/Modal";
@@ -9,8 +9,19 @@ import { faArrowLeft, faRightFromBracket, faPenToSquare, faTrash } from "@fortaw
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const token = JSON.parse(sessionStorage.getItem('data'));
-    const [restorans, setRestorans] = useState("");
+    const [restorans, setRestorans] = useState([]);
+    const [show, setShow] = useState(false)
+    const [title, setTitle] = useState();
+
+    useEffect(() => {
+        getRestorans();
+      }, []);
+
+    const getRestorans = async (e) => {
+        const dataRestorans = await axios.get("http://localhost:3000/restorans");
+        setRestorans(dataRestorans.data.data);
+    };
+
     const handleClick = async (event) => {
         try {
             setLocalStorage("token", "");
@@ -20,11 +31,6 @@ const Dashboard = () => {
             console.log(error);
           }
     };
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
-    const [show, setShow] = useState(false)
-    const [title, setTitle] = useState()
   return (
     <div className={style.dashboard_container}>
         <div className={style.top}>
@@ -53,103 +59,22 @@ const Dashboard = () => {
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Alamat</th>
+                            <th className={style.alamat}>Alamat</th>
                             <th>Kategori</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Restoran A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Restoran</td>
-                            <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran')]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Catering A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Catering</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>Rumah Makan A</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
-                            <td>Rumah Makan</td>
-                            <td><button><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                        </tr>
+                            
+                        {restorans.map((restoran, index) => (
+                            <tr key={restoran.id}>
+                                <td>{index+1}</td>
+                                <td>{restoran.nama}</td>
+                                <td className={style.alamat}>{restoran.alamat}</td>
+                                <td>{restoran.category.nama}</td>
+                                <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran')]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>
