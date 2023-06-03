@@ -6,25 +6,47 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = props => {
+  const nama_kecamatan = [
+    'Andir',
+    'Astana Anyar',
+    'Antapani',
+    'Arcamanik',
+    'Babakan Ciparay',
+    'Bandung Kidul',
+    'Bandung Kulon',
+    'Bandung Wetan',
+    'Batununggal',
+    'Bojongloa Kaler',
+    'Bojongloa Kidul',
+    'Buah Batu',
+    'Cibeunying Kaler',
+    'Cibeunying Kidul',
+    'Cibiru',
+    'Cicendo',
+    'Cinambo',
+    'Coblong',
+    'GedeBage',
+    'KiaraCondong',
+    'Lengkong',
+    'MandalaJati',
+    'Panyileukan',
+    'Rancasari',
+    'Regol',
+    'Sukajadi',
+    'Sukasari',
+    'Sumur Bandung',
+    'Ujung Berung'
+  ];
+
   const [categories, setCategories] = useState([]);
   const [nama, setNama] = useState("");
   const [no_sertifikat, setNoSertifikat] = useState("");
   const [kategori_id, setKategoriId] = useState("1");
-  const [kecamatan, setKecamatan] = useState("Coblong");
+  const [kecamatan, setKecamatan] = useState(nama_kecamatan[0]);
   const [alamat, setAlamat] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longtitude, setLongtitude] = useState("");
   const navigate = useNavigate();
-
-  const nama_kecamatan = [
-    'Coblong',
-    'Antapani',
-    'Sukajasi',
-    'Astana Anyar',
-    'Bandung Wetan',
-    'Lengkong',
-    'Cicendo'
-  ];
 
   useEffect(() => {
     getCategories();
@@ -63,7 +85,8 @@ const Modal = props => {
         latitude,
         longtitude,
       });
-      navigate("/dashboard");
+      props.onClose();
+      props.getRestoran();
     } catch (error) {
       console.log(error);
     }
@@ -101,7 +124,7 @@ const Modal = props => {
     <div className={style.modal} onClick={props.onClose}>
       <div className={style.modal_content} onClick={e => e.stopPropagation()}>
         <div className={style.modal_header}>
-          <h4>Form Penambahan Restoran</h4>
+          <h4>{props.title}</h4>
           <button onClick={props.onClose} >
           <FontAwesomeIcon icon={faXmark} className="icon_close" />
           </button>
@@ -113,7 +136,7 @@ const Modal = props => {
           type="text" 
           name="nama_restoran"
           onChange={(e) => setNama(e.target.value)}
-          defaultValue={nama} 
+          value={nama} 
           placeholder='Masukkan Nama Restoran'
           /><br/>
           <label>Nomor Sertifikat Halal</label><br/>
@@ -121,18 +144,18 @@ const Modal = props => {
           type="text" 
           name="no_sertifikat" 
           onChange={(e) => setNoSertifikat(e.target.value)}
-          defaultValue={no_sertifikat}
+          value={no_sertifikat}
           placeholder='Masukkan Nomor Sertifikat Halal'
           /><br/>
           <label>Kategori</label><br/>
-          <select onChange={(e) => setKategoriId(e.target.value)} defaultValue={kategori_id} name="kategori">
+          <select onChange={(e) => setKategoriId(e.target.value)} value={kategori_id} name="kategori">
             <option value="" disabled selected>Pilih Kategori</option>
             {categories.map((category, index) => (
               <option key={index} value={category.kategori_id}>{category.nama}</option>
             ))}
           </select><br/>
           <label>Kecamatan</label><br/>
-          <select onChange={(e) => setKecamatan(e.target.value)} defaultValue={kecamatan} name="kecamatan" id="kecamatan" >
+          <select onChange={(e) => setKecamatan(e.target.value)} value={kecamatan} name="kecamatan" id="kecamatan" >
             <option value="" disabled selected>Pilih Kecamatan</option>
             {nama_kecamatan.map((element, index) => (
               <option key={index} value={element}>{element}</option>
@@ -143,7 +166,7 @@ const Modal = props => {
           placeholder='Masukkan Alamat' 
           name="alamat" 
           onChange={(e) => setAlamat(e.target.value)}
-          defaultValue={alamat}
+          value={alamat}
           rows="4" 
           cols="50"
           ></textarea><br/>
@@ -152,7 +175,7 @@ const Modal = props => {
           type="text" 
           name="latitude" 
           onChange={(e) => setLatitude(e.target.value)}
-          defaultValue={latitude}
+          value={latitude}
           placeholder='Masukkan Latitude'
           /><br/>
           <label>Longtitude</label><br/>
@@ -160,7 +183,7 @@ const Modal = props => {
           type="text" 
           name="longtitude" 
           onChange={(e) => setLongtitude(e.target.value)}
-          defaultValue={longtitude}
+          value={longtitude}
           placeholder='Masukkan Longtitude'
           /><br/>
           <button >Simpan</button>
