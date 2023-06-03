@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import style from "../Style/dashboard.module.css";
 import axios from "axios";
-import Modal from "../components/Modal/Modal";
+import ListRestoran from "../components/ListRestoran/ListRestoran";
+import Kategori from "../components/Kategori/Kategori";
 import { useNavigate } from "react-router-dom";
 import { setLocalStorage } from "../scripts/localStorage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faRightFromBracket, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const [restorans, setRestorans] = useState([]);
-    const [show, setShow] = useState(false)
-    const [title, setTitle] = useState(false)
-    const [id, setId] = useState('');
+    const [restoran, setRestoran] = useState(true);
+    const [kategori, setKategori] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        getRestorans();
-      }, []);
-
-    const getRestorans = async (e) => {
-        const dataRestorans = await axios.get("http://localhost:3000/restorans");
-        setRestorans(dataRestorans.data.data);
-    };
-
-    const deleteRestoran = async (id) => {
-        try {
-          await axios.delete(`http://localhost:3000/restorans/${id}`);
-          getRestorans();
-        } catch (error) {
-          console.log(error);
+        const token = localStorage.getItem('token');
+        if(!token){
+            navigate("/login");
         }
-      };
+      }, []);
 
     const handleClick = async (event) => {
         try {
@@ -41,6 +30,17 @@ const Dashboard = () => {
             console.log(error);
           }
     };
+
+    // const checkIsLogin = () => {
+    //     const token = localStorage.getItem('token');
+    //     if(!token){
+    //         setIsLogin(false);
+    //     }
+    //     else{
+    //         setIsLogin(true);
+    //     }
+    // }
+
   return (
     <div className={style.dashboard_container}>
         <div className={style.top}>
@@ -55,42 +55,18 @@ const Dashboard = () => {
         </div>
         <div className={style.main_container}>
             <div className={style.data_container}>
-                <div className={style.button_container}>
-                    <form>
-                        <input type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
-                    </form>
-                    <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
-                        Tambah Restoran
+                <div className={style.navbar}>
+                    <button className={style.nav_button} onClick={() => {setRestoran(true); setKategori(false)}}>
+                        Restoran
+                    </button>
+                    <button className={style.nav_button} onClick={() => {setRestoran(false); setKategori(true)}}>
+                        Kategori
                     </button>
                 </div>
-                <div className={style.table_container}>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th className={style.alamat}>Alamat</th>
-                            <th>Kategori</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            
-                        {restorans.map((restoran, index) => (
-                            <tr key={restoran.id}>
-                                <td>{index+1}</td>
-                                <td>{restoran.nama}</td>
-                                <td className={style.alamat}>{restoran.alamat}</td>
-                                <td>{restoran.category.nama}</td>
-                                <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran'), setId(restoran.id)]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button onClick={() => deleteRestoran(restoran.id)}><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
+                {restoran ? <ListRestoran/> : null}
+                {kategori ? <Kategori/> : null}
             </div>
         </div>
-        {show ? <Modal className={style.modal} getRestoran={() => getRestorans()} onClose={() => setShow(false)} show={show} id={id}/> : null}
     </div>
   )
 }
