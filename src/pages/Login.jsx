@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import style from "../Style/login.module.css";
 import logo from '../icons/logo-halal.png';
@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +32,13 @@ const Login = () => {
       setError(response.data.message);
     }
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+        if(token){
+            navigate("/dashboard");
+        }
+  }, []);
   
   return (
     <div className={style.flex_container}>
