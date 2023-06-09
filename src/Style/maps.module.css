@@ -148,3 +148,25 @@ button.login:focus {
   font-size: 1.2rem;
   box-shadow: 0 0 0px 5px #fff;
 } */
+
+.dropdown {
+  z-index: 10;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  margin-top: 2px;
+  /* border: 1px solid grey; */
+}
+
+.dropdown:empty{
+  border: none;
+}
+
+.dropdown_row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+  padding: 3px;
+  font-size: 14px;
+}
