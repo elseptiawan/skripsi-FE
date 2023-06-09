@@ -3,17 +3,14 @@ import "leaflet/dist/leaflet.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents} from "react-leaflet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import Markers from "../components/Markers/Markers";
+import SearchMarker from "../components/SearchMarker/SearchMarker";
 
 
 import { Icon } from "leaflet";
-
-const customIcon = new Icon({
-    iconUrl: require("../icons/marker-icon.png"),
-    iconSize: [30, 30] // size of the icon
-  });
 
 const eventIcon = new Icon({
   iconUrl: require("../icons/pin.png"),
@@ -22,6 +19,14 @@ const eventIcon = new Icon({
 
   export default function Maps() {
     const navigate = useNavigate();
+    const [restorans, setRestorans] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [isLogin, setIsLogin] = useState(false);
+    const [value, setValue] = useState('');
+    const [dataSearch, setDataSearch] = useState([]);
+    const [showSearch, setShowSearch] = useState(false);
+    const [center, setCenter] = useState([-6.92161129558201, 107.60699406029568]);
+
     const handleClickLogin = () => {
         navigate('login');
       };
@@ -36,11 +41,19 @@ const eventIcon = new Icon({
           getRestoransByCategory(event.target.value);
         }
       };
-    const [restorans, setRestorans] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [isLogin, setIsLogin] = useState(false);
-    const [center, setCenter] = useState([-6.92161129558201, 107.60699406029568]);
-    const map = useMap();
+
+    const onChangeSearch = event => {
+        setValue(event.target.value);
+        if (!event.target.value){
+          setShowSearch(false);
+        }
+      };
+
+    const onSearch = (item) => {
+      setValue(item.nama);
+      setDataSearch(item);
+      setShowSearch(true);
+    }
 
     useEffect(() => {
       getRestorans();
@@ -54,9 +67,18 @@ const eventIcon = new Icon({
         click() {
           map.locate()
         },
+        mouseover() {
+          map.locate()
+        },
+        drag() {
+          map.locate()
+        },
+        zoom() {
+          map.locate()
+        },
         locationfound(e) {
           setPosition(e.latlng)
-          map.flyTo(e.latlng, map.getZoom())
+          // map.flyTo(e.latlng, map.getZoom())
         },
       })
     
@@ -100,16 +122,10 @@ const eventIcon = new Icon({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {restorans.map((restoran, index) => (
-          <Marker 
-          key={index} 
-          position={[restoran.latitude, restoran.longtitude]} 
-          icon={customIcon}
-          >
-            <Popup>{restoran.nama} <br/> {restoran.alamat}</Popup>
-          </Marker>
-        ))}
+        <Markers data={restorans} />
+        {showSearch ? <SearchMarker data={dataSearch}/> : null}
         <LocationMarker />
+        {/* <MarkerSelected markerPosition={selectedPosition} /> */}
       </MapContainer>
       </div>
         <div className={style.topleft}>
@@ -120,11 +136,20 @@ const eventIcon = new Icon({
             ))}
             </select>
             <br/>
-            <form>
             <div className={style.form_search}>
-              <input type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
+              <input value={value} onChange={onChangeSearch} type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
             </div>
-          </form>
+            <div className={style.dropdown}>
+              {restorans.filter(item => {
+                const searchTerm = value.toLocaleLowerCase();
+                const nama_restoran = item.nama.toLocaleLowerCase();
+                
+                return searchTerm && nama_restoran.startsWith(searchTerm) && nama_restoran !== searchTerm;
+              })
+              .map((item) => (
+                <div onClick={() => onSearch(item)} className={style.dropdown_row}>{item.nama}</div>
+              ))}
+            </div>
         </div>
         <div className={style.topright}> 
         {isLogin ? 
