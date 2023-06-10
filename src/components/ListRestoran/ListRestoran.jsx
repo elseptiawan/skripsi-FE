@@ -23,6 +23,11 @@ const ListRestoran = () => {
         setRestorans(dataRestorans.data.data);
     };
 
+    const onSearch = async (e) => {
+        const dataRestorans = await axios.get(`http://localhost:3000/restorans?search=${e.target.value}`);
+        setRestorans(dataRestorans.data.data);
+    };
+
     const deleteRestoran = async (id) => {
         try {
           await axios.delete(`http://localhost:3000/restorans/${id}`);
@@ -35,9 +40,7 @@ const ListRestoran = () => {
   return (
     <div>
         <div className={style.button_container}>
-            <form>
-                <input type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
-            </form>
+            <input type="search" name="search" placeholder="&#xf002;  Cari Restoran" onChange={onSearch}/>
             <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
                 Tambah Restoran
             </button>
