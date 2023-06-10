@@ -31,15 +31,20 @@ const Dashboard = () => {
           }
     };
 
-    // const checkIsLogin = () => {
-    //     const token = localStorage.getItem('token');
-    //     if(!token){
+    // const checkIsLogin = async () => {
+    //     try {
+    //         const res = await axios.get("http://localhost:3000/users/token");
+    //         console.log(res.status);
+    //         if (res.status == 200){
+    //             setIsLogin(true);
+    //         }
+    //         else{
+    //             setIsLogin(false);
+    //         }
+    //       } catch (error) {
     //         setIsLogin(false);
-    //     }
-    //     else{
-    //         setIsLogin(true);
-    //     }
-    // }
+    //       }
+    //   }
 
   return (
     <div className={style.dashboard_container}>

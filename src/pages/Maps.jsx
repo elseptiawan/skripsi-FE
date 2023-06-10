@@ -104,14 +104,19 @@ const eventIcon = new Icon({
       setCategories(dataCategories.data.response);
     }
 
-    const checkIsLogin = () => {
-      const token = localStorage.getItem('token')
-      if(token){
-        setIsLogin(true);
-      }
-      else{
-        setIsLogin(false);
-      }
+    const checkIsLogin = async () => {
+      try {
+          const res = await axios.get("http://localhost:3000/users/token");
+          console.log(res.status);
+          if (res.status == 200){
+              setIsLogin(true);
+          }
+          else{
+              setIsLogin(false);
+          }
+        } catch (error) {
+          setIsLogin(false);
+        }
     }
 
     return (

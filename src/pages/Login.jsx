@@ -33,6 +33,21 @@ const Login = () => {
     }
   }
 
+  const checkIsLogin = async () => {
+    try {
+        const res = await axios.get("http://localhost:3000/users/token");
+        console.log(res.status);
+        if (res.status == 200){
+            setIsLogin(true);
+        }
+        else{
+            setIsLogin(false);
+        }
+      } catch (error) {
+        setIsLogin(false);
+      }
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token');
         if(token){
@@ -67,7 +82,7 @@ const Login = () => {
             name="password"
             onChange={(e) => setPassword(e.target.value)} 
             required
-            minlength="6"/><br/>
+            minLength="6"/><br/>
             {error && <div className={`${style.alert} danger`}>{error}</div>}
             <button className={style.login_button}>
               Login
