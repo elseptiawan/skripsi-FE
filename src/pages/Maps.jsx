@@ -3,19 +3,9 @@ import "leaflet/dist/leaflet.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents} from "react-leaflet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import Markers from "../components/Markers/Markers";
-import SearchMarker from "../components/SearchMarker/SearchMarker";
-
-
-import { Icon } from "leaflet";
-
-const eventIcon = new Icon({
-  iconUrl: require("../icons/pin.png"),
-  iconSize: [30, 30] // size of the icon
-});
+import Map from "../components/Map/Map";
 
   export default function Maps() {
     const navigate = useNavigate();
@@ -25,7 +15,6 @@ const eventIcon = new Icon({
     const [value, setValue] = useState('');
     const [dataSearch, setDataSearch] = useState([]);
     const [showSearch, setShowSearch] = useState(false);
-    const [center, setCenter] = useState([-6.92161129558201, 107.60699406029568]);
 
     const handleClickLogin = () => {
         navigate('login');
@@ -61,34 +50,6 @@ const eventIcon = new Icon({
       checkIsLogin();
     }, []);
 
-    function LocationMarker() {
-      const [position, setPosition] = useState(null)
-      const map = useMapEvents({
-        click() {
-          map.locate()
-        },
-        mouseover() {
-          map.locate()
-        },
-        drag() {
-          map.locate()
-        },
-        zoom() {
-          map.locate()
-        },
-        locationfound(e) {
-          setPosition(e.latlng)
-          // map.flyTo(e.latlng, map.getZoom())
-        },
-      })
-    
-      return position === null ? null : (
-        <Marker position={position} icon={eventIcon}>
-          <Popup>You are here</Popup>
-        </Marker>
-      )
-    }
-
     const getRestorans = async () => {
       const dataRestorans = await axios.get("http://localhost:3000/restorans");
       setRestorans(dataRestorans.data.data);
@@ -108,7 +69,7 @@ const eventIcon = new Icon({
       try {
           const res = await axios.get("http://localhost:3000/users/token");
           console.log(res.status);
-          if (res.status == 200){
+          if (res.status === 200){
               setIsLogin(true);
           }
           else{
@@ -121,18 +82,7 @@ const eventIcon = new Icon({
 
     return (
       <div className={style.container}>
-        <div className={style.map}>
-        <MapContainer className={style.leaflet_container} center={center} zoom={13} scrollWheelZoom={true} zoomControl={false}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Markers data={restorans} />
-        {showSearch ? <SearchMarker data={dataSearch}/> : null}
-        <LocationMarker />
-        {/* <MarkerSelected markerPosition={selectedPosition} /> */}
-      </MapContainer>
-      </div>
+        <Map search={showSearch} data={restorans} dataSearch={dataSearch}/>
         <div className={style.topleft}>
             <select name = "category" onChange={handleChange}>
             <option value=''>Semua Kategori</option>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -9,10 +9,17 @@ const customIcon = new Icon({
     iconSize: [30, 30] // size of the icon
   });
 
-const Markers = ({data}) => {
+const Markers = (props) => {
     const map = useMap();
+
+    const func = (marker) => {
+      props.myRouting(true);
+      props.myLat(marker.latitude);
+      props.myLng(marker.longtitude);
+    };
+
     return (
-      data.map((marker, index) => {
+      props.data.map((marker, index) => {
         return (
           <Marker
             eventHandlers={{
@@ -24,6 +31,7 @@ const Markers = ({data}) => {
                   ],
                   13
                 );
+                props.myRouting(false);
               }
             }}
             key={index}
@@ -31,7 +39,11 @@ const Markers = ({data}) => {
             icon={customIcon}
           >
             <Popup>
-            {marker.nama} <br/> {marker.alamat}
+            {marker.nama} <br/> {marker.alamat} <br/> 
+            <button style={{ background: 'transparent', border: 'none', color: 'blue', cursor: 'pointer' }} 
+            onClick={() => func(marker)}>
+              Dapatkan Arah
+            </button>
             </Popup>
           </Marker>
         );
