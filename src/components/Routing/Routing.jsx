@@ -5,7 +5,7 @@ import "leaflet-routing-machine";
 import { useMap } from "react-leaflet";
 
 L.Marker.prototype.options.icon = L.icon({
-  iconUrl: require("../../icons/marker-icon.png"),
+  iconUrl: require("../../icons/placeholder.png"),
   iconSize: [30, 30]
 });
 

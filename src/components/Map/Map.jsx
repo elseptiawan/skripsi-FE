@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import style from "./map.module.css";
+import data from "../../data_geojson.json";
 import { MapContainer, TileLayer} from "react-leaflet";
 import Markers from "../Markers/Markers";
 import SearchMarker from "../SearchMarker/SearchMarker";
 import Routing from "../Routing/Routing";
 import LocationMarker from "../LocationMarker/LocationMarker";
+import GeoJsonComponent from "../GeoJsonComponent/GeoJsonComponent";
 
 const Map = (props) => {
     const [routing, setRouting] = useState(false);
@@ -26,7 +28,7 @@ const Map = (props) => {
       };
     return (
         <div className={style.map}>
-            <MapContainer className={style.leaflet_container} center={[-6.92161129558201, 107.60699406029568]} zoom={13} scrollWheelZoom={true} zoomControl={false}>
+            <MapContainer className={style.leaflet_container} center={[-6.908775426573443, 107.64318087144039]} zoom={13} scrollWheelZoom={true} zoomControl={false}>
             <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -36,6 +38,7 @@ const Map = (props) => {
             <LocationMarker myPosition={receivedPosition}/>
             {routing ? <Routing currentPosition={currentLocation} latDestination={lat} lngDestination={lng}/> : null}
             {/* <MarkerSelected markerPosition={selectedPosition} /> */}
+            <GeoJsonComponent/>
         </MapContainer>
         </div>
     )
