@@ -31,20 +31,20 @@ const Dashboard = () => {
           }
     };
 
-    // const checkIsLogin = async () => {
-    //     try {
-    //         const res = await axios.get("http://localhost:3000/users/token");
-    //         console.log(res.status);
-    //         if (res.status == 200){
-    //             setIsLogin(true);
-    //         }
-    //         else{
-    //             setIsLogin(false);
-    //         }
-    //       } catch (error) {
-    //         setIsLogin(false);
-    //       }
-    //   }
+    const checkIsLogin = async () => {
+        try {
+            const res = await axios.get("http://localhost:3000/users/token");
+            console.log(res.status);
+            if (res.status == 200){
+                setIsLogin(true);
+            }
+            else{
+                setIsLogin(false);
+            }
+          } catch (error) {
+            setIsLogin(false);
+          }
+      }
 
   return (
     <div className={style.dashboard_container}>

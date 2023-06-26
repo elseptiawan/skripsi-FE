@@ -24,7 +24,7 @@ const LocationMarker = (props) => {
       },
       locationfound(e) {
         setPosition(e.latlng)
-        props.myPosition(position)
+        // props.myPosition(position)
         // map.flyTo(e.latlng, map.getZoom())
       },
     })

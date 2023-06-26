@@ -1,4 +1,5 @@
 import style from "../Style/maps.module.css";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet/dist/leaflet.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -11,6 +12,7 @@ import Map from "../components/Map/Map";
     const navigate = useNavigate();
     const [restorans, setRestorans] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [category, setCategory] = useState('');
     const [isLogin, setIsLogin] = useState(false);
     const [value, setValue] = useState('');
     const [dataSearch, setDataSearch] = useState([]);
@@ -24,9 +26,11 @@ import Map from "../components/Map/Map";
       };
     const handleChange = event => {
         if (!event.target.value){
+          setCategory('');
           getRestorans();
         }
         else{
+          setCategory(event.target.value);
           getRestoransByCategory(event.target.value);
         }
       };
@@ -82,7 +86,7 @@ import Map from "../components/Map/Map";
 
     return (
       <div className={style.container}>
-        <Map search={showSearch} data={restorans} dataSearch={dataSearch}/>
+        <Map search={showSearch} data={restorans} dataSearch={dataSearch} category={category}/>
         <div className={style.topleft}>
             <select name = "category" onChange={handleChange}>
             <option value=''>Semua Kategori</option>
@@ -114,6 +118,20 @@ import Map from "../components/Map/Map";
         <button className={style.login} onClick={event => handleClickLogin(event)}>
         Login <FontAwesomeIcon icon={faRightToBracket} />
         </button>}
+        </div>
+        <div className={style.bottomleft}>
+          <div className={style.legend}>
+          <span className={style.legend_key}><hr width="40px" size="10" color="#3CFF33"/></span>
+          <span className={style.legend_value}>: Banyak</span>
+          </div> 
+          <div className={style.legend}>
+          <span className={style.legend_key}><hr width="40px" size="10" color="#E3FF33"/></span>
+          <span className={style.legend_value}>: Sedang</span>
+          </div> 
+          <div className={style.legend}>
+          <span className={style.legend_key}><hr width="40px" size="10" color="#FF3333"/></span>
+          <span className={style.legend_value}>: Sedikit</span>
+          </div> 
         </div>
       </div>
     );

@@ -1,13 +1,11 @@
 import React , { useState, useEffect } from 'react';
 import style from "./modalkategori.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const ModalKategori = props => {
   const [nama, setNama] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     if(props.id){

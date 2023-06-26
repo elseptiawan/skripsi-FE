@@ -48,12 +48,37 @@
 }
 
 .topright {
-  position: relative;
-  float: right;
+  position: absolute;
+  right: 0;
   margin-top: 20px;
   margin-right: 20px;
   z-index: 10;
   font-size: 12px;
+}
+
+.bottomleft {
+  position: absolute;
+  padding: 10px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  font-size: 12px;
+  background-color: white;
+  border-radius: 7px;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.legend_key{
+  margin-right: 10px;
+}
+
+.legend_value{
+  font-size: 14px;
 }
 
 .form_search {

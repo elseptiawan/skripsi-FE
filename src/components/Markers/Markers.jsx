@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef} from 'react'
 import { Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -11,27 +11,29 @@ const customIcon = new Icon({
 
 const Markers = (props) => {
     const map = useMap();
+    const markerRef = useRef(null)
 
     const func = (marker) => {
-      props.myRouting(true);
-      props.myLat(marker.latitude);
-      props.myLng(marker.longtitude);
+      window.open(`https://www.google.com/maps?saddr=My+Location&daddr=${marker.latitude},${marker.longtitude}`);
     };
 
     return (
       props.data.map((marker, index) => {
         return (
           <Marker
+            ref={markerRef}
             eventHandlers={{
               click: () => {
+                // const mark = markerRef.current
                 map.flyTo(
                   [
                     marker.latitude,
                     marker.longtitude
                   ],
-                  13
+                  map.getZoom(),
+                  // mark.openPopup()
                 );
-                props.myRouting(false);
+                // props.myRouting(false);
               }
             }}
             key={index}
@@ -42,7 +44,7 @@ const Markers = (props) => {
             {marker.nama} <br/> {marker.alamat} <br/> 
             <button style={{ background: 'transparent', border: 'none', color: 'blue', cursor: 'pointer' }} 
             onClick={() => func(marker)}>
-              Dapatkan Arah
+              Dapatkan Arah dengan Google Maps
             </button>
             </Popup>
           </Marker>

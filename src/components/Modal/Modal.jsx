@@ -46,7 +46,6 @@ const Modal = props => {
   const [alamat, setAlamat] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longtitude, setLongtitude] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     getCategories();
