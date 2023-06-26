@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import style from "./listrestoran.module.css";
 import axios from "axios";
+import { saveAs } from 'file-saver';
 import Modal from "../Modal/Modal";
-import { useNavigate } from "react-router-dom";
-import { setLocalStorage } from "../../scripts/localStorage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const ListRestoran = () => {
-    const navigate = useNavigate();
     const [restorans, setRestorans] = useState([]);
     const [show, setShow] = useState(false)
     const [title, setTitle] = useState(false)
@@ -28,6 +26,16 @@ const ListRestoran = () => {
         setRestorans(dataRestorans.data.data);
     };
 
+    const exportHandle = async () => {
+        axios.post('http://localhost:3000/export/create-pdf')
+        .then(() => axios.get('http://localhost:3000/export/fetch-pdf', { responseType: 'blob' }))
+        .then((res) => {
+            const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+
+            saveAs(pdfBlob, 'newPdf.pdf');
+        })
+    };
+
     const deleteRestoran = async (id) => {
         try {
           await axios.delete(`http://localhost:3000/restorans/${id}`);
@@ -43,6 +51,9 @@ const ListRestoran = () => {
             <input type="search" name="search" placeholder="&#xf002;  Cari Restoran" onChange={onSearch}/>
             <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
                 Tambah Restoran
+            </button>
+            <button className={style.export_button} onClick = {() => exportHandle()}>
+                Export Ke PDF
             </button>
         </div>
         <div className={style.table_container}>
@@ -69,7 +80,7 @@ const ListRestoran = () => {
                 </tbody>
             </table>
         </div>
-        {show ? <Modal className={style.modal} getRestoran={() => getRestorans()} onClose={() => setShow(false)} show={show} id={id}/> : null}
+        {show ? <Modal className={style.modal} getRestoran={() => getRestorans()} onClose={() => setShow(false)} show={show} id={id} title={title}/> : null}
     </div>
   )
 }
