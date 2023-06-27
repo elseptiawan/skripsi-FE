@@ -1,6 +1,5 @@
 import React, {useRef} from 'react'
 import { Marker, Popup, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 
 import { Icon } from "leaflet";
 

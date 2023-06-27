@@ -31,14 +31,6 @@
   width: 100%;
 }
 
-/* height of the container */
-.leaflet_container {
-  position: absolute;
-  z-index: 0;
-  height: 100%;
-  width: 100%;
-}
-
 .topleft {
   position: relative;
   float: left;

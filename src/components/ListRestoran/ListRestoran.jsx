@@ -27,13 +27,13 @@ const ListRestoran = () => {
     };
 
     const exportHandle = async () => {
-        axios.post('http://localhost:3000/export/create-pdf')
+        axios.get('http://localhost:3000/export/create-pdf')
         .then(() => axios.get('http://localhost:3000/export/fetch-pdf', { responseType: 'blob' }))
         .then((res) => {
             const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
-            saveAs(pdfBlob, 'newPdf.pdf');
-        })
+            saveAs(pdfBlob, 'data.pdf');
+        });
     };
 
     const deleteRestoran = async (id) => {
@@ -52,7 +52,7 @@ const ListRestoran = () => {
             <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
                 Tambah Restoran
             </button>
-            <button className={style.export_button} onClick = {() => exportHandle()}>
+            <button className={style.export_button} onClick = {exportHandle}>
                 Export Ke PDF
             </button>
         </div>
