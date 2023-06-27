@@ -5,7 +5,7 @@ import { GeoJSON } from "react-leaflet";
 
 const GeoJSONComponent = (props) => {
   const checkKlasifikasi = async (kecamatan, category = null) => {
-    const {data:klasifikasi} = await axios.get(`http://localhost:3000/analisis/check/${kecamatan}`);
+    const {data:klasifikasi} = await axios.get(`http://localhost:3000/analisis/check/${kecamatan}/${category ? category : ""}`);
     return klasifikasi.response;
 };
   const getJumlah = async (kecamatan) => {
@@ -14,8 +14,7 @@ const GeoJSONComponent = (props) => {
   };
 
   const onEachContry = async (feature, layer) =>{
-    layer.options.color = "black";
-    layer.options.fillColor = "white";  
+    layer.options.color = "black";  
     layer.options.weight = 2; 
     layer.options.fillOpacity = 0.4;
     const contryName = feature.properties.KECAMATAN;
@@ -28,16 +27,31 @@ const GeoJSONComponent = (props) => {
       klasifikasi = await checkKlasifikasi(contryName,props.category);
     }
     if (klasifikasi === "Banyak"){
-      layer.options.fillColor = '#3CFF33';
+      layer.setStyle({
+        fillColor: '#3CFF33',
+        fillOpacity: 0.4,
+      });
+      // layer.options.fillColor = '#3CFF33';
+      // layer.options.fillOpacity = 0.4;
     }
     else if (klasifikasi === "Sedikit"){
-      layer.options.fillColor = '#FF3333';
+      layer.setStyle({
+        fillColor: '#FF3333',
+        fillOpacity: 0.4,
+      });
+      // layer.options.fillColor = '#FF3333';
+      // layer.options.fillOpacity = 0.4;
     }
     else{
-      layer.options.fillColor = '#E3FF33';
+      layer.setStyle({
+        fillColor: '#E3FF33',
+        fillOpacity: 0.4,
+      });
+      // layer.options.fillColor = '#E3FF33';
+      // layer.options.fillOpacity = 0.4;
     }
     layer.on(
-      'click', async function (e) {
+      'click', function (e) {
         let popupContent = `
         <Popup>
             <table>
@@ -50,6 +64,11 @@ const GeoJSONComponent = (props) => {
                 <td>Jumlah Restoran & Rumah Makan</td>
                 <td>:</td>
                 <td>${jumlah}</td>
+              </tr>
+              <tr>
+                <td>Klasifikasi</td>
+                <td>:</td>
+                <td>${klasifikasi}</td>
               </tr>
             </table>
         </Popup>
