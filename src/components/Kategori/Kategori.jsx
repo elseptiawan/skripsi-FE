@@ -16,13 +16,13 @@ const Kategori= () => {
       }, []);
 
     const getKategori = async (e) => {
-        const {data : res} = await axios.get("http://localhost:3000/categories");
+        const {data : res} = await axios.get("/categories");
         setKategori(res.response);
     };
 
     const deleteKategori = async (id) => {
         try {
-          await axios.delete(`http://localhost:3000/categories/${id}`);
+          await axios.delete(`/categories/${id}`);
           getKategori();
         } catch (error) {
           console.log(error);

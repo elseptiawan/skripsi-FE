@@ -13,6 +13,8 @@ import Map from "../components/Map/Map";
     const [restorans, setRestorans] = useState([]);
     const [categories, setCategories] = useState([]);
     const [category, setCategory] = useState('');
+    const [batasAtas, setBatasAtas] = useState('');
+    const [batasBawah, setBatasBawah] = useState('');
     const [isLogin, setIsLogin] = useState(false);
     const [value, setValue] = useState('');
     const [dataSearch, setDataSearch] = useState([]);
@@ -52,26 +54,34 @@ import Map from "../components/Map/Map";
       getRestorans();
       getCategories();
       checkIsLogin();
+      getBatas();
     }, []);
 
     const getRestorans = async () => {
-      const dataRestorans = await axios.get("http://localhost:3000/restorans");
+      const dataRestorans = await axios.get("/restorans");
       setRestorans(dataRestorans.data.data);
     };
 
     const getRestoransByCategory = async (id) => {
-      const dataRestoransByCategory = await axios.get(`http://localhost:3000/restorans/get-by-category/${id}`);
+      const dataRestoransByCategory = await axios.get(`/restorans/get-by-category/${id}`);
       setRestorans(dataRestoransByCategory.data.data);
     };
 
     const getCategories = async () => {
-      const dataCategories = await axios.get("http://localhost:3000/categories");
+      const dataCategories = await axios.get("/categories");
       setCategories(dataCategories.data.response);
+    }
+
+    const getBatas = async () => {
+      const batas = await axios.get("/analisis");
+      console.log(batas.data);
+      setBatasAtas(batas.data.batas_atas);
+      setBatasBawah(batas.data.batas_bawah);
     }
 
     const checkIsLogin = async () => {
       try {
-          const res = await axios.get("http://localhost:3000/users/token");
+          const res = await axios.get("/users/token");
           console.log(res.status);
           if (res.status === 200){
               setIsLogin(true);
@@ -122,15 +132,15 @@ import Map from "../components/Map/Map";
         <div className={style.bottomleft}>
           <div className={style.legend}>
           <span className={style.legend_key}><hr width="40px" size="10" color="#3CFF33"/></span>
-          <span className={style.legend_value}>: Banyak</span>
+          <span className={style.legend_value}>{`: Banyak (X > ${batasAtas})`}</span>
           </div> 
           <div className={style.legend}>
           <span className={style.legend_key}><hr width="40px" size="10" color="#E3FF33"/></span>
-          <span className={style.legend_value}>: Sedang</span>
+          <span className={style.legend_value}>{`: Sedang (${batasBawah}`} &#8804; {`X`} &#8804; {`${batasAtas})`}</span>
           </div> 
           <div className={style.legend}>
           <span className={style.legend_key}><hr width="40px" size="10" color="#FF3333"/></span>
-          <span className={style.legend_value}>: Sedikit</span>
+          <span className={style.legend_value}>{`: Sedikit (X < ${batasBawah})`}</span>
           </div> 
         </div>
       </div>

@@ -17,18 +17,18 @@ const ListRestoran = () => {
       }, []);
 
     const getRestorans = async (e) => {
-        const dataRestorans = await axios.get("http://localhost:3000/restorans");
+        const dataRestorans = await axios.get("/restorans");
         setRestorans(dataRestorans.data.data);
     };
 
     const onSearch = async (e) => {
-        const dataRestorans = await axios.get(`http://localhost:3000/restorans?search=${e.target.value}`);
+        const dataRestorans = await axios.get(`/restorans?search=${e.target.value}`);
         setRestorans(dataRestorans.data.data);
     };
 
     const exportHandle = async () => {
-        axios.get('http://localhost:3000/export/create-pdf')
-        .then(() => axios.get('http://localhost:3000/export/fetch-pdf', { responseType: 'blob' }))
+        axios.get('/export/create-pdf')
+        .then(() => axios.get('/export/fetch-pdf', { responseType: 'blob' }))
         .then((res) => {
             const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
@@ -38,7 +38,7 @@ const ListRestoran = () => {
 
     const deleteRestoran = async (id) => {
         try {
-          await axios.delete(`http://localhost:3000/restorans/${id}`);
+          await axios.delete(`/restorans/${id}`);
           getRestorans();
         } catch (error) {
           console.log(error);

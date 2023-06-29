@@ -15,13 +15,13 @@ const ModalKategori = props => {
   }, []);
 
   const getCategoryById = async (id) => {
-    const {data : res} = await axios.get(`http://localhost:3000/categories/${id}`);
+    const {data : res} = await axios.get(`/categories/${id}`);
     setNama(res.response.nama);
   }
 
   const addCategory = async () => {
     try {
-      await axios.post("http://localhost:3000/categories", {
+      await axios.post("/categories", {
         nama,
       });
       props.onClose();
@@ -33,7 +33,7 @@ const ModalKategori = props => {
 
   const editCategory = async (id) => {
     try {
-      await axios.put(`http://localhost:3000/categories/${id}`, {
+      await axios.put(`/categories/${id}`, {
         nama,
       });
       props.onClose();

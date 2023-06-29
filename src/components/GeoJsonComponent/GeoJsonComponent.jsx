@@ -5,11 +5,11 @@ import { GeoJSON } from "react-leaflet";
 
 const GeoJSONComponent = (props) => {
   const checkKlasifikasi = async (kecamatan, category = null) => {
-    const {data:klasifikasi} = await axios.get(`http://localhost:3000/analisis/check/${kecamatan}/${category ? category : ""}`);
+    const {data:klasifikasi} = await axios.get(`/analisis/check/${kecamatan}/${category ? category : ""}`);
     return klasifikasi.response;
 };
   const getJumlah = async (kecamatan) => {
-    const {data:jumlah} = await axios.get(`http://localhost:3000/analisis/jumlah/${kecamatan}`);
+    const {data:jumlah} = await axios.get(`/analisis/jumlah/${kecamatan}`);
     return jumlah.response;
   };
 

@@ -58,12 +58,12 @@ const Modal = props => {
   }, []);
 
   const getCategories = async () => {
-    const dataCategories = await axios.get("http://localhost:3000/categories");
+    const dataCategories = await axios.get("/categories");
     setCategories(dataCategories.data.response);
   }
 
   const getRestoransById = async (id) => {
-    const {data : res} = await axios.get(`http://localhost:3000/restorans/${id}`);
+    const {data : res} = await axios.get(`/restorans/${id}`);
     setNama(res.data.nama);
     setNoSertifikat(res.data.no_sertifikat);
     setKategoriId(res.data.kategori_id);
@@ -75,7 +75,7 @@ const Modal = props => {
 
   const addRestoran = async () => {
     try {
-      await axios.post("http://localhost:3000/restorans", {
+      await axios.post("/restorans", {
         nama,
         no_sertifikat,
         kategori_id,
@@ -93,7 +93,7 @@ const Modal = props => {
 
   const editRestoran = async (id) => {
     try {
-      await axios.put(`http://localhost:3000/restorans/${id}`, {
+      await axios.put(`/restorans/${id}`, {
         nama,
         no_sertifikat,
         kategori_id,

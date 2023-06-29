@@ -33,7 +33,7 @@ const Dashboard = () => {
 
     const checkIsLogin = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/users/token");
+            const res = await axios.get("/users/token");
             console.log(res.status);
             if (res.status == 200){
                 setIsLogin(true);
