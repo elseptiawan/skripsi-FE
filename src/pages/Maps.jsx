@@ -81,7 +81,6 @@ import Map from "../components/Map/Map";
     const checkIsLogin = async () => {
       try {
           const res = await axios.get("/users/token");
-          console.log(res.status);
           if (res.status === 200){
               setIsLogin(true);
           }
