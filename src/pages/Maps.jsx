@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 import Map from "../components/Map/Map";
 
   export default function Maps() {
@@ -121,13 +121,20 @@ import Map from "../components/Map/Map";
             </div>
         </div>
         <div className={style.topright}> 
-        {isLogin ? 
-        <button className={style.login} onClick={event => handleClickDashboard(event)}>
-        Dashboard 
-        </button> : 
-        <button className={style.login} onClick={event => handleClickLogin(event)}>
-        Login <FontAwesomeIcon icon={faRightToBracket} />
-        </button>}
+          {isLogin ? 
+          <button className={style.login} onClick={event => handleClickDashboard(event)}>
+          Dashboard 
+          </button> : 
+          <button className={style.login} onClick={event => handleClickLogin(event)}>
+          Login <FontAwesomeIcon icon={faRightToBracket} />
+          </button>}
+          {isLogin ? 
+          <button className={style.login_icon} onClick={event => handleClickDashboard(event)}>
+          <FontAwesomeIcon icon={faUser} />
+          </button> : 
+          <button className={style.login_icon} onClick={event => handleClickLogin(event)}>
+          <FontAwesomeIcon icon={faRightToBracket} />
+          </button>}
         </div>
         <div className={style.bottomleft}>
           <div className={style.legend}>

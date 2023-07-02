@@ -1,8 +1,12 @@
+*{
+  box-sizing: border-box;
+}
+
 .dashboard_container {
     background-color: #F8F2F0;
-    position: fixed;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
 .top {
@@ -78,6 +82,18 @@
 
   button.nav_button:hover{
     cursor: pointer;
+  }
+
+  @media (max-width: 340px){
+    .navbar{
+      display: flex;
+      padding: 10px 0px;
+    }
+
+    .navbar button{
+      width: 50%;
+      margin-left: 0px;
+    }
   }
 
   .data_container {

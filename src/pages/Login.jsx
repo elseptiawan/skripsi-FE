@@ -26,6 +26,7 @@ const Login = () => {
       setLocalStorage("token", res.token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
       setError("");
+      setIsLogin(true);
       navigate("/dashboard");
     } catch ({ response }) {
       console.log(response);
@@ -36,7 +37,7 @@ const Login = () => {
   const checkIsLogin = async () => {
     try {
         const res = await axios.get("/users/token");
-        console.log(res.status);
+        console.log(res);
         if (res.status === 200){
             setIsLogin(true);
         }
@@ -49,11 +50,11 @@ const Login = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-        if(token){
-            navigate("/dashboard");
-        }
-  }, []);
+    checkIsLogin();
+    if(isLogin){
+      navigate("/dashboard")
+    } 
+  }, [isLogin]);
   
   return (
     <div className={style.flex_container}>

@@ -143,6 +143,46 @@ input:placeholder-shown{
   font-weight: bold;
 }
 
+.login_icon{
+  display: none;
+  position: relative;
+  background-color: white;
+  padding: 7px;
+  border: none;
+  border-radius: 7px;
+}
+
+@media (max-width:425px){
+  .login{
+    display: none;
+  }
+  .login_icon{
+    display: block;
+  }
+}
+
+@media (max-width: 325px){
+  .form_search input[type="search"],
+  select{
+    width: 100%;
+  }
+  .topleft{
+    width: 90%;
+  }
+  .topright{
+    width: 90%;
+    top: 85px;
+    left: 20px;
+  }
+  .login_icon{
+    display: none;
+  }
+  .login{
+    display: block;
+    width: 100%;
+  }
+}
+
 button.login:hover {
   cursor: pointer;
 }

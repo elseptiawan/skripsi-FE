@@ -14,6 +14,7 @@ const ListRestoran = () => {
 
     useEffect(() => {
         getRestorans();
+        console.log("Test");
       }, []);
 
     const getRestorans = async (e) => {
@@ -46,15 +47,17 @@ const ListRestoran = () => {
       };
 
   return (
-    <div>
+    <div className={style.container}>
         <div className={style.button_container}>
             <input type="search" name="search" placeholder="&#xf002;  Cari Restoran" onChange={onSearch}/>
-            <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
-                Tambah Restoran
-            </button>
-            <button className={style.export_button} onClick = {exportHandle}>
-                Export Ke PDF
-            </button>
+            <div className={style.button}>
+                <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
+                    Tambah Restoran
+                </button>
+                <button className={style.export_button} onClick = {exportHandle}>
+                    Export Ke PDF
+                </button>
+            </div>
         </div>
         <div className={style.table_container}>
             <table>

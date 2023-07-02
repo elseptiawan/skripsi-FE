@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import 'font-awesome/css/font-awesome.min.css';
 import axios from "axios";
@@ -13,7 +13,7 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
 root.render(
-  <StrictMode>
+  <BrowserRouter>
     <App />
-  </StrictMode>
+  </BrowserRouter>
 );

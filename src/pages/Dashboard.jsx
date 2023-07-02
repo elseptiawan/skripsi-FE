@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import style from "../Style/dashboard.module.css";
 import axios from "axios";
 import ListRestoran from "../components/ListRestoran/ListRestoran";
@@ -15,13 +15,13 @@ const Dashboard = () => {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if(!token){
-            navigate("/login");
-        }
-      }, []);
+        checkIsLogin();
+        // if(!isLogin){
+        //     navigate("/login");
+        // }
+      }, [isLogin]);
 
-    const handleClick = async (event) => {
+    const handleClick = async () => {
         try {
             setLocalStorage("token", "");
             axios.defaults.headers.common["Authorization"] = "";
@@ -35,7 +35,7 @@ const Dashboard = () => {
         try {
             const res = await axios.get("/users/token");
             console.log(res.status);
-            if (res.status == 200){
+            if (res.status === 200){
                 setIsLogin(true);
             }
             else{
