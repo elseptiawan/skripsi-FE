@@ -74,7 +74,6 @@ import Map from "../components/Map/Map";
 
     const getBatas = async () => {
       const batas = await axios.get("/analisis");
-      console.log(batas.data);
       setBatasAtas(batas.data.batas_atas);
       setBatasBawah(batas.data.batas_bawah);
     }

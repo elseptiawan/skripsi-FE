@@ -37,7 +37,6 @@ const Login = () => {
   const checkIsLogin = async () => {
     try {
         const res = await axios.get("/users/token");
-        console.log(res);
         if (res.status === 200){
             setIsLogin(true);
         }

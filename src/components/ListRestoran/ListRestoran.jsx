@@ -14,7 +14,6 @@ const ListRestoran = () => {
 
     useEffect(() => {
         getRestorans();
-        console.log("Test");
       }, []);
 
     const getRestorans = async (e) => {
