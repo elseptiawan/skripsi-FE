@@ -12,14 +12,10 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [restoran, setRestoran] = useState(true);
     const [kategori, setKategori] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
 
-    // useEffect(() => {
-    //     checkIsLogin();
-    //     if(!isLogin){
-    //         navigate("/login");
-    //     }
-    //   }, [isLogin, navigate]);
+    useEffect(() => {
+        checkIsLogin();
+      }, []);
 
     const handleClick = async () => {
         try {
@@ -34,15 +30,11 @@ const Dashboard = () => {
     const checkIsLogin = async () => {
         try {
             const res = await axios.get("/users/token");
-            console.log(res.status);
-            if (res.status === 200){
-                setIsLogin(true);
-            }
-            else{
-                setIsLogin(false);
+            if (res.status !== 200){
+                navigate("/login");
             }
           } catch (error) {
-            setIsLogin(false);
+            navigate("/login");
           }
       }
 
