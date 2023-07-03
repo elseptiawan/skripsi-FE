@@ -104,3 +104,29 @@ button.login_button:focus {
     padding: 0.5rem 1rem;
     border-radius: 5px;
 }
+
+@media (max-width: 768px) {
+    .form_login{
+        width: 80%;
+    }
+}
+
+@media (max-width: 563px){
+    .flex_container{
+        flex-direction: column;
+    }
+
+    .form_container{
+        padding: 20px;
+    }
+
+    .form_login{
+        width: 75%;
+    }
+}
+
+@media (max-width:321px){
+    .form_login{
+        width: 90%;
+    }
+}

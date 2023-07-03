@@ -48,12 +48,12 @@ const Login = () => {
       }
   }
 
-  useEffect(() => {
-    checkIsLogin();
-    if(isLogin){
-      navigate("/dashboard")
-    } 
-  }, [isLogin]);
+  // useEffect(() => {
+  //   checkIsLogin();
+  //   if(isLogin){
+  //     navigate("/dashboard")
+  //   } 
+  // }, [isLogin]);
   
   return (
     <div className={style.flex_container}>

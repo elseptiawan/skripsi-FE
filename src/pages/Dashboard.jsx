@@ -14,12 +14,12 @@ const Dashboard = () => {
     const [kategori, setKategori] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
 
-    useEffect(() => {
-        checkIsLogin();
-        // if(!isLogin){
-        //     navigate("/login");
-        // }
-      }, [isLogin]);
+    // useEffect(() => {
+    //     checkIsLogin();
+    //     if(!isLogin){
+    //         navigate("/login");
+    //     }
+    //   }, [isLogin, navigate]);
 
     const handleClick = async () => {
         try {
