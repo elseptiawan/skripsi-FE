@@ -50,7 +50,7 @@ const ListRestoran = () => {
         <div className={style.button_container}>
             <input type="search" name="search" placeholder="&#xf002;  Cari Restoran" onChange={onSearch}/>
             <div className={style.button}>
-                <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran'), setId('')]}>
+                <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran/Rumah Makan'), setId('')]}>
                     Tambah Restoran
                 </button>
                 <button className={style.export_button} onClick = {exportHandle}>
@@ -76,7 +76,7 @@ const ListRestoran = () => {
                             <td>{restoran.nama}</td>
                             <td className={style.alamat}>{restoran.alamat}</td>
                             <td>{restoran.category.nama}</td>
-                            <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran'), setId(restoran.id)]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button onClick={() => deleteRestoran(restoran.id)}><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
+                            <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran/Rumah Makan'), setId(restoran.id)]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button onClick={() => deleteRestoran(restoran.id)}><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
                         </tr>
                     ))}
                 </tbody>
