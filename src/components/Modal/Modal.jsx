@@ -130,13 +130,13 @@ const Modal = props => {
         </div>
         <div className={style.modal_body}>
         <form onSubmit={handleSubmit}>
-          <label>Nama Restoran</label><br/>
+          <label>Nama Restoran/Rumah Makan</label><br/>
           <input 
           type="text" 
           name="nama_restoran"
           onChange={(e) => setNama(e.target.value)}
           value={nama} 
-          placeholder='Masukkan Nama Restoran'
+          placeholder='Masukkan Nama Restoran/Rumah Makan'
           /><br/>
           <label>Nomor Sertifikat Halal</label><br/>
           <input 
