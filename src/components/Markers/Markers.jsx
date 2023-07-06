@@ -13,7 +13,7 @@ const Markers = (props) => {
     const markerRef = useRef(null)
 
     const func = (marker) => {
-      window.open(`https://www.google.com/maps?saddr=My+Location&daddr=${marker.latitude},${marker.longtitude}`);
+      window.open(`https://www.google.com/maps/dir/?api=1&destination=${marker.latitude},${marker.longtitude}`);
     };
 
     return (
