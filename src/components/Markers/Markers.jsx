@@ -1,5 +1,5 @@
-import React, {useRef} from 'react'
-import { Marker, Popup, useMap } from "react-leaflet";
+import React, {useRef, useState} from 'react'
+import { Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 
 import { Icon } from "leaflet";
 
@@ -11,9 +11,30 @@ const customIcon = new Icon({
 const Markers = (props) => {
     const map = useMap();
     const markerRef = useRef(null)
+    const [position, setPosition] = useState(null)
+    const mapEvents = useMapEvents({
+      click() {
+        mapEvents.locate()
+      },
+      mouseover() {
+        mapEvents.locate()
+      },
+      drag() {
+        mapEvents.locate()
+      },
+      zoom() {
+        mapEvents.locate()
+      },
+      locationfound(e) {
+        setPosition(e.latlng)
+        // props.myPosition(position)
+        // map.flyTo(e.latlng, map.getZoom())
+      },
+    });
 
     const func = (marker) => {
-      window.open(`http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345`);
+      // console.log(position.lng);
+      window.open(`http://maps.google.com/maps?saddr=${position.lat},${position.lng}&daddr=${marker.latitude},${marker.longtitude}`);
     };
 
     return (
