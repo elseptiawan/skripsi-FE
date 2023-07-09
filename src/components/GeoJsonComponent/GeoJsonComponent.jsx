@@ -81,6 +81,28 @@ const GeoJSONComponent = (props) => {
         target.setStyle({
           fillOpacity: 0.8,
         });
+        let popupContent = `
+        <Popup>
+            <table>
+             <tr>
+                <td style="width: 200px">Nama Kecamatan</td>
+                <td>:</td>
+                <td>${contryName}</td>
+             </tr>
+              <tr>
+                <td>Jumlah Restoran & Rumah Makan</td>
+                <td>:</td>
+                <td>${jumlah}</td>
+              </tr>
+              <tr>
+                <td>Klasifikasi</td>
+                <td>:</td>
+                <td>${klasifikasi}</td>
+              </tr>
+            </table>
+        </Popup>
+    `;
+    layer.bindPopup(popupContent);
     });
     layer.on(
       'mouseout', function (e) {
