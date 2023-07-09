@@ -64,7 +64,6 @@
 
   .navbar {
     position: relative;
-    height: 35px;
     width: 100%;
     padding: 10px;
     background-color: #F4F7FC;
@@ -84,7 +83,7 @@
     cursor: pointer;
   }
 
-  @media (max-width: 340px){
+  @media (max-width: 380px){
     .navbar{
       display: flex;
       padding: 10px 0px;
@@ -92,7 +91,7 @@
 
     .navbar button{
       width: 50%;
-      margin-left: 0px;
+      /* margin-left: 0px; */
     }
   }
 

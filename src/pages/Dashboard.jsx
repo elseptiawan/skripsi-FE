@@ -54,7 +54,7 @@ const Dashboard = () => {
             <div className={style.data_container}>
                 <div className={style.navbar}>
                     <button className={style.nav_button} onClick={() => {setRestoran(true); setKategori(false)}}>
-                        Restoran
+                        Restoran/Rumah-Makan
                     </button>
                     <button className={style.nav_button} onClick={() => {setRestoran(false); setKategori(true)}}>
                         Kategori
