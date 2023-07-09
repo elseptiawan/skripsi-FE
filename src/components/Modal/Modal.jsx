@@ -46,6 +46,7 @@ const Modal = props => {
   const [alamat, setAlamat] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longtitude, setLongtitude] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     getCategories();
@@ -87,7 +88,7 @@ const Modal = props => {
       props.onClose();
       props.getRestoran();
     } catch (error) {
-      console.log(error);
+      setError(error.response.data[0].message);
     }
   };
 
@@ -105,7 +106,7 @@ const Modal = props => {
       props.onClose();
       props.getRestoran();
     } catch (error) {
-      console.log(error);
+      setError(error.response.data[0].message);
     }
   };
 
@@ -185,6 +186,7 @@ const Modal = props => {
           value={longtitude}
           placeholder='Masukkan Longtitude'
           /><br/>
+          {error && <div className={style.alert}>{error}</div>}
           <button >Simpan</button>
         </form>
         </div>
