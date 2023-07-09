@@ -11,14 +11,17 @@
 .button_container {
     position: relative;
     display: flex;
+    justify-content: space-between;
     width: 100%;
     padding: 10px;
     background-color: #F4F7FC;
   }
 
   .button{
-    position: absolute;
-    right: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 45%;
+    justify-content: space-between;
   }
 
   .button_container input {
@@ -39,7 +42,7 @@
   .button_container button{
     position: relative;
     float: right;
-    height: 25px;
+    height: auto;
     font-weight: bold;
     font-size: 16;
     color: #1E1E1E;
@@ -47,7 +50,6 @@
     border-radius: 5px;
     background-color: white;
     padding: 5px;
-    margin-right: 10px;
   }
 
   .button_container button:hover{
@@ -60,6 +62,12 @@
     outline: none;
   }
 
+  @media (max-width:895px){
+    .button{
+      width: 55%;
+    }
+  }
+
   @media (max-width: 700px){
     .button_container{
       display: flex;
@@ -67,18 +75,26 @@
     }
 
     .button_container input{
-      width: 207px;
+      width: 90%;
     }
 
     .button{
       position: relative;
       margin-top: 10px;
       margin-left: 15px;
-      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      border: 2px solid black;
     }
 
     .button button{
       clear: right;
+      height: auto;
+      width: 30%;
+    }
+
+    .add_restoran{
+      margin-right: 0px;
     }
   }
 
@@ -86,16 +102,6 @@
     .button_container input{
       position: relative;
       width: 90%;
-    }
-
-    .button{
-      width: 90%;
-    }
-
-    .button button{
-      position: relative;
-      width: 50%;
-      height: auto;
     }
   }
 
