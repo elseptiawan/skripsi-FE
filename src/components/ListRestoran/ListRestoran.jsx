@@ -3,12 +3,14 @@ import style from "./listrestoran.module.css";
 import axios from "axios";
 import { saveAs } from 'file-saver';
 import Modal from "../Modal/Modal";
+import ModalImport from "../ModalImport/ModalImport";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const ListRestoran = () => {
     const [restorans, setRestorans] = useState([]);
     const [show, setShow] = useState(false)
+    const [showImport, setShowImport] = useState(false)
     const [title, setTitle] = useState(false)
     const [id, setId] = useState('');
 
@@ -51,10 +53,13 @@ const ListRestoran = () => {
             <input type="search" name="search" placeholder="&#xf002;  Cari Restoran" onChange={onSearch}/>
             <div className={style.button}>
                 <button className={style.add_restoran} onClick = {() => [setShow(true), setTitle('Form Penambahan Restoran/Rumah Makan'), setId('')]}>
-                    Tambah Restoran
+                    Tambah Data
                 </button>
                 <button className={style.export_button} onClick = {exportHandle}>
                     Export Ke PDF
+                </button>
+                <button className={style.import_button} onClick = {() => setShowImport(true)}>
+                    Import Data
                 </button>
             </div>
         </div>
@@ -83,6 +88,7 @@ const ListRestoran = () => {
             </table>
         </div>
         {show ? <Modal className={style.modal} getRestoran={() => getRestorans()} onClose={() => setShow(false)} show={show} id={id} title={title}/> : null}
+        {showImport ? <ModalImport className={style.modal_import} getRestoran={() => getRestorans()} onClose={() => setShowImport(false)}/> : null}
     </div>
   )
 }
