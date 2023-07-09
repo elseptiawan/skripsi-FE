@@ -6,11 +6,11 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const ModalKategori = props => {
   const [nama, setNama] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if(props.id){
       getCategoryById(props.id);
-      console.log(props.id);
     }
   }, []);
 
@@ -27,7 +27,7 @@ const ModalKategori = props => {
       props.onClose();
       props.getKategori();
     } catch (error) {
-      console.log(error);
+      setError(error.response.data[0].message);
     }
   };
 
@@ -39,7 +39,7 @@ const ModalKategori = props => {
       props.onClose();
       props.getKategori();
     } catch (error) {
-      console.log(error);
+      setError(error.response.data[0].message);
     }
   };
 
@@ -72,6 +72,7 @@ const ModalKategori = props => {
           value={nama} 
           placeholder='Masukkan Nama Kategori'
           /><br/>
+          {error && <div className={style.alert}>{error}</div>}
           <button >Simpan</button>
         </form>
         </div>
