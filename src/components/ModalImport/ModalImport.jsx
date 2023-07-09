@@ -23,7 +23,7 @@ const ModalImport = (props) => {
             props.onClose();
             props.getRestoran();
           } catch (error) {
-            console.log(error.response);
+            setError(error.response.data.message);
           }
       }
     return (
