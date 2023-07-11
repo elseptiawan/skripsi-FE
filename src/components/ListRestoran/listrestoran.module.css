@@ -20,7 +20,7 @@
   .button{
     display: flex;
     flex-direction: row-reverse;
-    width: 45%;
+    width: 300px;
     justify-content: space-between;
   }
 
@@ -84,7 +84,6 @@
       margin-left: 15px;
       justify-content: space-between;
       width: 90%;
-      border: 2px solid black;
     }
 
     .button button{
