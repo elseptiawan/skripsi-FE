@@ -34,7 +34,6 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    overflow: scroll;
   }
 
   .table_container table {
