@@ -59,6 +59,15 @@
     height: 30px;
 }
 
+.modal_body input[type=file]{
+    padding-top: 3px;
+}
+
+.modal_body input[type=file]::file-selector-button{
+    font-size: 14px;
+    border-radius: 3px;
+}
+
 .modal_body textarea {
     height: 100px;
     padding-top: 10px;
