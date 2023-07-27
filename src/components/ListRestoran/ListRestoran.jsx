@@ -68,7 +68,8 @@ const ListRestoran = () => {
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
+                        <th className={style.nama}>Nama</th>
+                        <th>Nomor Sertifikat Halal</th>
                         <th className={style.alamat}>Alamat</th>
                         <th>Kategori</th>
                         <th></th>
@@ -78,10 +79,11 @@ const ListRestoran = () => {
                     {restorans.map((restoran, index) => (
                         <tr key={restoran.id}>
                             <td>{index+1}</td>
-                            <td>{restoran.nama}</td>
+                            <td className={style.nama}>{restoran.nama}</td>
+                            <td>{restoran.no_sertifikat}</td>
                             <td className={style.alamat}>{restoran.alamat}</td>
                             <td>{restoran.category.nama}</td>
-                            <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran/Rumah Makan'), setId(restoran.id)]}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button onClick={() => deleteRestoran(restoran.id)}><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
+                            <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran/Rumah Makan'), setId(restoran.id)]}><FontAwesomeIcon icon={faPenToSquare} className={style.icon_edit} /></button> <button onClick={() => deleteRestoran(restoran.id)}><FontAwesomeIcon icon={faTrash} className={style.icon_delete} /></button> </td>
                         </tr>
                     ))}
                 </tbody>

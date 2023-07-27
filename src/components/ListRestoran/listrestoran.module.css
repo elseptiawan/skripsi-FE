@@ -147,9 +147,14 @@
     border-style: none none none none;
   }
 
+  .table_container table td.nama,
+  .table_container table th.nama{
+    max-width: 200px;
+  }
+
   .table_container table td.alamat,
   .table_container table th.alamat{
-    max-width: 400px;
+    max-width: 500px;
   }
 
   .table_container table td button {
@@ -195,4 +200,8 @@
   .icon_delete,
   .icon_edit {
     margin-left: 10px;
+  }
+
+  .icon_delete{
+    color: rgb(255, 60, 60);
   }
