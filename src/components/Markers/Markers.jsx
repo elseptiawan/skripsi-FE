@@ -68,7 +68,7 @@ const Markers = (props) => {
             icon={customIcon}
           >
             <Popup>
-            {marker.nama} <br/> {marker.alamat} <br/> 
+            {marker.nama} <br/> {marker.no_sertifikat} <br/> {marker.alamat} <br/> 
             <button style={{ background: 'transparent', border: 'none', color: 'blue', cursor: 'pointer' }} 
             onClick={() => func(marker)}>
               Dapatkan Arah dengan Google Maps

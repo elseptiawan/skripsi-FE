@@ -1,6 +1,7 @@
-import React, {useRef, useEffect} from 'react'
-import { Marker, Popup, useMap } from "react-leaflet";
+import React, {useRef, useEffect, useState} from 'react'
+import { Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import style from "../Markers/markers.module.css";
 
 import { Icon } from "leaflet";
 
@@ -9,9 +10,39 @@ const customIcon = new Icon({
     iconSize: [30, 30] // size of the icon
   });
 
-const SearchMarker = ({data}, props) => {
-	const markerRef = useRef(null)
+const SearchMarker = ({data}) => {
+	  const markerRef = useRef(null)
     const map = useMap();
+    const [error, setError] = useState(null);
+    const [position, setPosition] = useState(null);
+
+    const mapEvents = useMapEvents({
+      click() {
+        mapEvents.locate()
+      },
+      mouseover() {
+        mapEvents.locate()
+      },
+      drag() {
+        mapEvents.locate()
+      },
+      zoom() {
+        mapEvents.locate()
+      },
+      locationfound(e) {
+        setPosition(e.latlng);
+      },
+    });
+
+    const func = (marker) => {
+      if (!position){
+        setError("Website tidak dapat membaca lokasi anda, silahkan berikan izin untuk mengakses lokasi anda!");
+      }
+      else{
+        window.open(`http://maps.google.com/maps?saddr=${position.lat},${position.lng}&daddr=${marker.latitude},${marker.longtitude}`);
+        setError(null);
+      }
+    };
 
     useEffect(() => {
         const marker = markerRef.current
@@ -29,7 +60,12 @@ const SearchMarker = ({data}, props) => {
             icon={customIcon}
           >
             <Popup>
-            {data.nama} <br/> {data.alamat}
+            {data.nama} <br/> {data.no_sertifikat} <br/> {data.alamat} <br/> 
+            <button style={{ background: 'transparent', border: 'none', color: 'blue', cursor: 'pointer' }} 
+            onClick={() => func(data)}>
+              Dapatkan Arah dengan Google Maps
+            </button>
+            {error && <div className={style.alert}>{error}</div>}
             </Popup>
           </Marker>
     )
