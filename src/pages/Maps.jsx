@@ -104,17 +104,29 @@ import Map from "../components/Map/Map";
             </select>
             <br/>
             <div className={style.form_search}>
-              <input value={value} onChange={onChangeSearch} type="search" name="search" placeholder="&#xf002;  Cari Restoran"/>
+              <input value={value} onChange={onChangeSearch} type="search" name="search" placeholder="&#xf002;  Search..."/>
             </div>
             <div className={style.dropdown}>
               {restorans.filter(item => {
                 const searchTerm = value.toLocaleLowerCase();
                 const nama_restoran = item.nama.toLocaleLowerCase();
+                const kecamatan = item.kecamatan.toLocaleLowerCase();
+
+                // if (searchTerm === nama_restoran || searchTerm === kecamatan){
+                //   return item;
+                // }
                 
-                return searchTerm && nama_restoran.startsWith(searchTerm) && nama_restoran !== searchTerm;
+                return searchTerm && (nama_restoran.startsWith(searchTerm) || kecamatan.startsWith(searchTerm)) && nama_restoran !== searchTerm;
               })
+              .slice(0,10)
               .map((item) => (
-                <div onClick={() => onSearch(item)} className={style.dropdown_row}>{item.nama}</div>
+                <div 
+                  key={item.id}
+                  onClick={() => onSearch(item)} 
+                  className={style.dropdown_row}>
+                  {item.nama}<br/>
+                  <span>{item.kecamatan}</span>
+                </div>
               ))}
             </div>
         </div>

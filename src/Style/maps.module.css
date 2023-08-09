@@ -227,3 +227,12 @@ button.login:focus {
   padding: 3px;
   font-size: 14px;
 }
+
+.dropdown_row:hover{
+  background-color: rgba(205, 205, 205, 0.8);
+}
+
+.dropdown_row span{
+  font-weight: normal;
+  font-size: 10px;
+}
