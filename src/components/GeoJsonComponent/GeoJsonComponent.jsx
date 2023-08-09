@@ -20,12 +20,7 @@ const GeoJSONComponent = (props) => {
     const contryName = feature.properties.KECAMATAN;
     const jumlah = await getJumlah(contryName);
     var klasifikasi = ''
-    if(!props.category){
-      klasifikasi = await checkKlasifikasi(contryName);
-    }
-    else{
-      klasifikasi = await checkKlasifikasi(contryName,props.category);
-    }
+    klasifikasi = await checkKlasifikasi(contryName);
     if (klasifikasi === "Banyak"){
       layer.setStyle({
         fillColor: '#3CFF33',
