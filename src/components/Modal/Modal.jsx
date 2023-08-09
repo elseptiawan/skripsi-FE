@@ -18,7 +18,7 @@ const Modal = props => {
     'Batununggal',
     'Bojongloa Kaler',
     'Bojongloa Kidul',
-    'Buah Batu',
+    'Buahbatu',
     'Cibeunying Kaler',
     'Cibeunying Kidul',
     'Cibiru',
