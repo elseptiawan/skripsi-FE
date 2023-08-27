@@ -202,6 +202,10 @@
     margin-left: 10px;
   }
 
+  .icon_edit{
+    color: rgb(95, 214, 95);
+  }
+
   .icon_delete{
-    color: rgb(255, 60, 60);
+    color: rgb(250, 70, 70) !important;
   }
