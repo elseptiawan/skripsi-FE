@@ -3,10 +3,15 @@ import { Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import style from "./markers.module.css";
 import { Icon } from "leaflet";
 
-const customIcon = new Icon({
-    iconUrl: require("../../icons/marker-icon.png"),
-    iconSize: [30, 30] // size of the icon
+const restaurantIcon = new Icon({
+    iconUrl: require("../../icons/restaurant_6395517.png"),
+    iconSize: [25, 25] // size of the icon
   });
+
+const RMIcon = new Icon({
+  iconUrl: require("../../icons/rumah_makan.png"),
+  iconSize: [30, 30] // size of the icon
+});
 
 const Markers = (props) => {
     const map = useMap();
@@ -65,7 +70,7 @@ const Markers = (props) => {
             }}
             key={index}
             position={[marker.latitude, marker.longtitude]}
-            icon={customIcon}
+            icon={marker.kategori_id === 1 ? restaurantIcon : RMIcon}
           >
             <Popup>
             {marker.nama} <br/> {marker.no_sertifikat} <br/> {marker.alamat} <br/> 
