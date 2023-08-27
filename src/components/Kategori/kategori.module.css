@@ -115,7 +115,10 @@
     border-bottom-right-radius: 5px;
   }
 
-  .icon_delete,
-  .icon_edit {
-    margin-left: 10px;
+  .icon_edit{
+    color: rgb(95, 214, 95);
+  }
+
+  .icon_delete{
+    color: rgb(250, 70, 70) !important;
   }

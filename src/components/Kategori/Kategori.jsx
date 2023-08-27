@@ -50,7 +50,7 @@ const Kategori= () => {
                         <tr key={kat.kategori_id}>
                             <td>{index+1}</td>
                             <td>{kat.nama}</td>
-                            <td className={style.action}><button onClick={() => {{ setShow(true); setTitle('Form Edit Kategori'); setId(kat.kategori_id) }}}><FontAwesomeIcon icon={faPenToSquare} className="icon_edit" /></button> <button onClick={() => deleteKategori(kat.kategori_id)}><FontAwesomeIcon icon={faTrash} className="icon_delete" /></button> </td>
+                            <td className={style.action}><button onClick={() => {{ setShow(true); setTitle('Form Edit Kategori'); setId(kat.kategori_id) }}}><FontAwesomeIcon icon={faPenToSquare} className={style.icon_edit} /></button> <button onClick={() => deleteKategori(kat.kategori_id)}><FontAwesomeIcon icon={faTrash} className={style.icon_delete} /></button> </td>
                         </tr>
                     ))}
                 </tbody>
