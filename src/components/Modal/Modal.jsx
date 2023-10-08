@@ -48,15 +48,15 @@ const Modal = props => {
   const [longtitude, setLongtitude] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
 
-  useEffect(() => {
-    if(props.id){
-      getRestoransById(props.id);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if(props.id){
+  //     getRestoransById(props.id);
+  //   }
+  // }, []);
 
   const getCategories = async () => {
     const dataCategories = await axios.get("/categories");

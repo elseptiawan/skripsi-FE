@@ -15,20 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
-      const { data: res } = await axios.post("/users/login", {
-        email,
-        password,
-      });
-
-      setLocalStorage("token", res.token);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
-      setError("");
-      navigate("/dashboard");
-    } catch ({ response }) {
-      response.data[0] ? setError(response.data[0].message) : setError(response.data.message);
-    }
+    navigate("/dashboard");
   }
 
   const checkIsLogin = async () => {

@@ -13,9 +13,9 @@ const Dashboard = () => {
     const [restoran, setRestoran] = useState(true);
     const [kategori, setKategori] = useState(false);
 
-    useEffect(() => {
-        checkIsLogin();
-      }, []);
+    // useEffect(() => {
+    //     checkIsLogin();
+    //   }, []);
 
     const handleClick = async () => {
         try {

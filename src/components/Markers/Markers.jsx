@@ -3,6 +3,32 @@ import { Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import style from "./markers.module.css";
 import { Icon } from "leaflet";
 
+const dataDummy = [
+  {
+    latitude: -6.914744,
+    longtitude: 107.609810,
+  },
+  {
+    latitude: -6.872253031274607,
+    longtitude: 107.61252731251643,
+  },
+  {
+    latitude: -6.874468590841262,
+    longtitude: 107.62939304159144,
+  },
+  {
+    latitude: -6.8803056886992975,
+    longtitude: 107.60407299030832,
+  },
+  {
+    latitude: -6.879879625589099,
+    longtitude: 107.5959619908295,
+  },
+  {
+    latitude: -6.882989877501619,
+    longtitude: 107.6254877455461,
+  },
+];
 const restaurantIcon = new Icon({
     iconUrl: require("../../icons/restaurant_6395517.png"),
     iconSize: [25, 25] // size of the icon
@@ -50,7 +76,7 @@ const Markers = (props) => {
     };
 
     return (
-      props.data.map((marker, index) => {
+      dataDummy.map((marker, index) => {
         return (
           <Marker
             ref={markerRef}

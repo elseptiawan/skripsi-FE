@@ -50,12 +50,12 @@ import Map from "../components/Map/Map";
       setShowSearch(true);
     }
 
-    useEffect(() => {
-      getRestorans();
-      getCategories();
-      checkIsLogin();
-      getBatas();
-    }, []);
+    // useEffect(() => {
+    //   getRestorans();
+    //   getCategories();
+    //   checkIsLogin();
+    //   getBatas();
+    // }, []);
 
     const getRestorans = async () => {
       const dataRestorans = await axios.get("/restorans");

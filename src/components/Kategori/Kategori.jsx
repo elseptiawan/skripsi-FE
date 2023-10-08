@@ -11,9 +11,20 @@ const Kategori= () => {
     const [title, setTitle] = useState(false)
     const [id, setId] = useState('');
 
-    useEffect(() => {
-        getKategori();
-      }, []);
+    const categories = [];
+    for (let i = 0; i < 3; i++) {
+        categories.push(
+            <tr key={i}>
+                <td>{i+1}</td>
+                <td className={style.nama}>Nama Kategori</td>
+                <td><button onClick = {() => [setShow(true), setTitle('Form Edit Kategori'), setId(i)]}><FontAwesomeIcon icon={faPenToSquare} className={style.icon_edit} /></button> <button onClick={() => deleteKategori(i)}><FontAwesomeIcon icon={faTrash} className={style.icon_delete} /></button> </td>
+            </tr>
+        )
+    }
+
+    // useEffect(() => {
+    //     getKategori();
+    //   }, []);
 
     const getKategori = async (e) => {
         const {data : res} = await axios.get("/categories");
@@ -45,14 +56,15 @@ const Kategori= () => {
                         <th className={style.action}></th>
                     </tr>
                 </thead>
-                <tbody>                            
-                    {kategori.map((kat, index) => (
+                <tbody>  
+                    {categories}                          
+                    {/* {kategori.map((kat, index) => (
                         <tr key={kat.kategori_id}>
                             <td>{index+1}</td>
                             <td>{kat.nama}</td>
                             <td className={style.action}><button onClick={() => {{ setShow(true); setTitle('Form Edit Kategori'); setId(kat.kategori_id) }}}><FontAwesomeIcon icon={faPenToSquare} className={style.icon_edit} /></button> <button onClick={() => deleteKategori(kat.kategori_id)}><FontAwesomeIcon icon={faTrash} className={style.icon_delete} /></button> </td>
                         </tr>
-                    ))}
+                    ))} */}
                 </tbody>
             </table>
         </div>

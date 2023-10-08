@@ -14,9 +14,24 @@ const ListRestoran = () => {
     const [title, setTitle] = useState(false)
     const [id, setId] = useState('');
 
-    useEffect(() => {
-        getRestorans();
-      }, []);
+    // useEffect(() => {
+    //     getRestorans();
+    //   }, []);
+
+    const data = [];
+    for (let i = 0; i < 15; i++) {
+        data.push(
+            <tr key={i}>
+                <td>{i+1}</td>
+                <td className={style.nama}>Nama Restoran</td>
+                <td>1234567890</td>
+                <td className={style.alamat}>Alamat Restoran</td>
+                <td>Restoran</td>
+                <td><button onClick = {() => [setShow(true), setTitle('Form Edit Restoran/Rumah Makan'), setId(i)]}><FontAwesomeIcon icon={faPenToSquare} className={style.icon_edit} /></button> <button onClick={() => deleteRestoran(i)}><FontAwesomeIcon icon={faTrash} className={style.icon_delete} /></button> </td>
+            </tr>
+        )
+    }
+
 
     const getRestorans = async (e) => {
         const dataRestorans = await axios.get("/restorans");
@@ -75,7 +90,8 @@ const ListRestoran = () => {
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>                            
+                <tbody>  
+                    {data}                       
                     {restorans.map((restoran, index) => (
                         <tr key={restoran.id}>
                             <td>{index+1}</td>
