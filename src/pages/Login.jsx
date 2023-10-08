@@ -29,9 +29,9 @@ const Login = () => {
       }
   }
 
-  useEffect(() => {
-    checkIsLogin(); 
-  }, []);
+  // useEffect(() => {
+  //   checkIsLogin(); 
+  // }, []);
   
   return (
     <div className={style.flex_container}>
